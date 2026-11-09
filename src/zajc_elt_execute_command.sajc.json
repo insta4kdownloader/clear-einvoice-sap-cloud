@@ -1,0 +1,25 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Catalog for ELT Execute Command",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_ELT_EXEC_COMMAND_JOB"
+  },
+  "parameters": [
+    {
+      "name": "P_EINV"
+    },
+    {
+      "name": "P_MAXSEC"
+    },
+    {
+      "name": "P_RETRY"
+    },
+    {
+      "name": "P_SEQ"
+    }
+  ]
+}

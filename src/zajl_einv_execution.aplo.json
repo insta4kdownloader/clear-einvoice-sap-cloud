@@ -1,0 +1,30 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Log for e-Invoice Execution",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "subobjects": [
+    {
+      "name": "JOB_LOG_ELT_POST",
+      "description": "Job Log for e-Invoice ELT Posting"
+    },
+    {
+      "name": "JOB_LOG_FETCH",
+      "description": "Job Log for e-Document Fetch"
+    },
+    {
+      "name": "JOB_LOG_PICKUP",
+      "description": "Job Log for e-Invoice Pick-Up"
+    },
+    {
+      "name": "JOB_LOG_STATUS",
+      "description": "Job Log for e-Invoice Status Refresh"
+    },
+    {
+      "name": "JOB_LOG_SUBMIT",
+      "description": "Job Log for e-Invoice Submission"
+    }
+  ]
+}

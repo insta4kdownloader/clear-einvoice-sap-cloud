@@ -1,0 +1,43 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Template for e-Invoice Pick-Up",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJC_EINV_PICKUP"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_BUDATF",
+        "value": ""
+      },
+      {
+        "name": "P_BUDATT",
+        "value": ""
+      },
+      {
+        "name": "P_BUKRS",
+        "value": ""
+      },
+      {
+        "name": "P_CPUDTF",
+        "value": ""
+      },
+      {
+        "name": "P_CPUDTT",
+        "value": ""
+      },
+      {
+        "name": "P_PROJID",
+        "value": ""
+      },
+      {
+        "name": "P_SUBMIT",
+        "value": ""
+      }
+    ]
+  }
+}

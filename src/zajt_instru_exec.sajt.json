@@ -1,0 +1,69 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Template for Instrument Execute",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJC_INSTRU_EXEC"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_DAYS",
+        "value": ""
+      },
+      {
+        "name": "P_DEL",
+        "value": ""
+      },
+      {
+        "name": "P_DEL_A",
+        "value": ""
+      },
+      {
+        "name": "P_DEL_D",
+        "value": ""
+      },
+      {
+        "name": "P_DEL_F",
+        "value": ""
+      },
+      {
+        "name": "P_DEL_S",
+        "value": ""
+      },
+      {
+        "name": "P_SEND",
+        "value": ""
+      },
+      {
+        "name": "P_SEND_D",
+        "value": ""
+      },
+      {
+        "name": "P_SEND_S",
+        "value": ""
+      },
+      {
+        "name": "P_SENT",
+        "value": ""
+      }
+    ],
+    "valueRangesParameters": [
+      {
+        "name": "S_DATE",
+        "valueRanges": []
+      },
+      {
+        "name": "S_TIME",
+        "valueRanges": []
+      },
+      {
+        "name": "S_UNAME",
+        "valueRanges": []
+      }
+    ]
+  }
+}

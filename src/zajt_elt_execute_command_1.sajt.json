@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Clear ELT e-Invoice posting",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJC_ELT_EXECUTE_COMMAND"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_EINV",
+        "value": "X"
+      },
+      {
+        "name": "P_MAXSEC",
+        "value": ""
+      },
+      {
+        "name": "P_RETRY",
+        "value": ""
+      },
+      {
+        "name": "P_SEQ",
+        "value": ""
+      }
+    ]
+  }
+}

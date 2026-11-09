@@ -1,0 +1,28 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Catalog for e-Document Fetch",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_EINV_EDOC_FETCH_JOB"
+  },
+  "parameters": [
+    {
+      "name": "P_BUKRS"
+    },
+    {
+      "name": "P_TYPE"
+    },
+    {
+      "name": "P_SDATE"
+    },
+    {
+      "name": "P_EDATE"
+    },
+    {
+      "name": "P_ADHOC"
+    }
+  ]
+}

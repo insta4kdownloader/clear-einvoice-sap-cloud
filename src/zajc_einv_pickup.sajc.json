@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Catalog for e-Invoice Pick-Up",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_EINV_PICKUP_JOB"
+  },
+  "parameters": [
+    {
+      "name": "P_BUKRS"
+    },
+    {
+      "name": "P_PROJID"
+    },
+    {
+      "name": "P_BUDATF"
+    },
+    {
+      "name": "P_BUDATT"
+    },
+    {
+      "name": "P_CPUDTF"
+    },
+    {
+      "name": "P_CPUDTT"
+    },
+    {
+      "name": "P_SUBMIT"
+    }
+  ]
+}

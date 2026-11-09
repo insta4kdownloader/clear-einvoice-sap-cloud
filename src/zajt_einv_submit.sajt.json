@@ -1,0 +1,23 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Template for e-Invoice Submission",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJC_EINV_SUBMIT"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_BUKRS",
+        "value": ""
+      },
+      {
+        "name": "P_MAXROW",
+        "value": ""
+      }
+    ]
+  }
+}

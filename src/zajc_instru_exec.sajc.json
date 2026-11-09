@@ -1,0 +1,111 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application job catalog Instrument Execute",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_INSTRU_EXEC"
+  },
+  "sections": [
+    {
+      "name": "SEL",
+      "title": "Selection"
+    },
+    {
+      "name": "OPT",
+      "title": "Settings"
+    }
+  ],
+  "groups": [
+    {
+      "name": "SENDSEL",
+      "title": "Selection",
+      "section": "SEL"
+    },
+    {
+      "name": "DELSEL",
+      "title": "Delete Selection",
+      "section": "SEL"
+    },
+    {
+      "name": "GEN",
+      "title": "General",
+      "section": "OPT"
+    },
+    {
+      "name": "TIM",
+      "title": "Date/Time",
+      "section": "OPT"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "P_SEND_S",
+      "group": "SENDSEL",
+      "enabledByParameter": "P_SEND"
+    },
+    {
+      "name": "P_SEND_D",
+      "group": "SENDSEL",
+      "enabledByParameter": "P_SEND"
+    },
+    {
+      "name": "P_SENT",
+      "group": "DELSEL",
+      "enabledByParameter": "P_DEL"
+    },
+    {
+      "name": "P_DEL_S",
+      "group": "DELSEL",
+      "enabledByParameter": "P_DEL"
+    },
+    {
+      "name": "P_DEL_D",
+      "group": "DELSEL",
+      "enabledByParameter": "P_DEL"
+    },
+    {
+      "name": "P_DEL_F",
+      "group": "DELSEL",
+      "enabledByParameter": "P_DEL"
+    },
+    {
+      "name": "P_DEL_A",
+      "group": "DELSEL",
+      "enabledByParameter": "P_DEL"
+    },
+    {
+      "name": "P_DEL",
+      "group": "GEN"
+    },
+    {
+      "name": "P_SEND",
+      "group": "GEN"
+    },
+    {
+      "name": "S_TIME",
+      "group": "TIM",
+      "indented": true,
+      "enabledByParameter": "P_SEND_S"
+    },
+    {
+      "name": "S_UNAME",
+      "group": "TIM",
+      "indented": true,
+      "enabledByParameter": "P_SEND_S"
+    },
+    {
+      "name": "S_DATE",
+      "group": "TIM",
+      "indented": true,
+      "enabledByParameter": "P_SEND_S"
+    },
+    {
+      "name": "P_DAYS",
+      "group": "TIM",
+      "enabledByParameter": "P_DEL_F"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Templete for ELT Execute Command",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJC_ELT_EXECUTE_COMMAND"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_EINV",
+        "value": ""
+      },
+      {
+        "name": "P_MAXSEC",
+        "value": ""
+      },
+      {
+        "name": "P_RETRY",
+        "value": ""
+      },
+      {
+        "name": "P_SEQ",
+        "value": ""
+      }
+    ]
+  }
+}

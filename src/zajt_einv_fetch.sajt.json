@@ -1,0 +1,35 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Template for e-Document Fetch",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJC_EINV_FETCH"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_ADHOC",
+        "value": ""
+      },
+      {
+        "name": "P_BUKRS",
+        "value": ""
+      },
+      {
+        "name": "P_EDATE",
+        "value": ""
+      },
+      {
+        "name": "P_SDATE",
+        "value": ""
+      },
+      {
+        "name": "P_TYPE",
+        "value": ""
+      }
+    ]
+  }
+}
