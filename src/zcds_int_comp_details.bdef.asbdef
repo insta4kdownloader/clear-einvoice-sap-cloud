@@ -1,0 +1,14 @@
+managed implementation in class zbp_cds_int_comp_details unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_COMP_DETAILS
+persistent table ztcomp_details
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update ) Projectid;
+}

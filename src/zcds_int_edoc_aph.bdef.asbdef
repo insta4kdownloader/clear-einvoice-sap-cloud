@@ -1,0 +1,436 @@
+/* =====================================================================
+   Inbound e-Invoice (AP) business object.
+
+   Replaces the AP cockpit /CLR/EINV_AP_COCKPIT (includes _DD / _SS / _COMMON).
+
+   The payload is normalised across eight tables rather than the two flat
+   ones of the first conversion: repeating UBL groups - notes, VAT
+   subtotals, allowances and charges, document references, item attributes
+   and the parties themselves - had fixed slots there (four notes, four tax
+   subtotals, one allowance, one charge) and silently lost anything beyond
+   them. Here each is its own child entity with no limit.
+
+   Every child hangs off the header on UUID alone. LINE_ID is blank on a
+   document-level row and carries the line number on a line-level one, so one
+   table serves both levels - which is how the source models it.
+   ===================================================================== */
+managed implementation in class zbp_cds_int_edoc_aph unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EDOC_APH alias EDocument
+persistent table ztedoc_aph
+lock master
+authorization master ( instance, global )
+{
+  update;
+
+  /* Only the four action fields are writable; everything else is the payload
+     as the Clear platform delivered it and must not be edited in SAP. The
+     HANA cockpit enforced that with per-column EDIT_TOGGLE flags in
+     /CLR/EINV_APFCAT - here it is in the behaviour definition, where it
+     belongs. Key fields are not listed: RAP already refuses to change a key
+     on update, and marking one readonly blocks it on create as well. */
+  /* DocumentNumber moved out of this list when it became the second key
+     field. field ( readonly ) is unconditional and blocks CREATE too, so
+     leaving it here would mean every row inserted by the posting write-back
+     carries a blank half-key. It is readonly on UPDATE instead, with Uuid. */
+  field ( readonly ) DocumentId, Status, ApiMessage, UblVersionId,
+                     CustomizationId, ProfileId, SbdhDocumentTypeId, SbdhProcessId,
+                     SbdhCountry, SbdhSenderId, SbdhReceiverId, SbdhCreatedTimestamp,
+                     IssueDate, IssueTime, DueDate, InvoiceTypeCode, InvoiceTypeName,
+                     TaxPointDate, Currency, TaxCurrency, AccountingCost, BuyerReference,
+                     PeriodStart, PeriodEnd, PeriodDescriptionCode,
+                     TaxExchangeSourceCurrency, TaxExchangeTargetCurrency,
+                     TaxExchangeRate, TaxExchangeDate, LineExtensionAmount,
+                     AllowanceTotal, ChargeTotal, TaxExclusiveAmount, VatTotal,
+                     TaxInclusiveAmount, PrepaidAmount, PayableRoundingAmount,
+                     PayableAmount, VatTotalTaxCurrency, ActualDeliveryDate,
+                     DeliveryLocationId, DeliveryLocationIdScheme, DeliveryTermsId,
+                     PaymentMeansCode, PaymentMeansName, PaymentMeansId,
+                     PaymentInstructionNote, PaymentId, PayeeAccountId,
+                     PayeeAccountScheme, PayeeAccountName, PayeeBranchId, CardAccountId,
+                     CardNetwork, CardHolder, MandateId, PayerAccountId, PaymentTermsId,
+                     PaymentTermsNote, PaymentTermsAmount, PaymentTermsCurrency,
+                     PaymentTermsDueDate, PrepaidId, PrepaidPaidAmount, PrepaidCurrency,
+                     PrepaidReceivedDate, PrepaidInstructionId, LineCount, JsonPayload,
+                     CreatedOn, CreatedAt, CreatedBy, ChangedOn, ChangedAt, ChangedBy;
+
+  /* The key is fixed once the document is there. readonly : update rather
+     than plain readonly: the unconditional form would block it on create
+     too, and a loader has to be able to supply it. */
+  field ( readonly : update ) Uuid, DocumentNumber;
+
+  /* Replaces &ZSEND / FORM send_action_data: posts the action to the
+     platform and writes back status + action. */
+  /* ( features : instance ) replaces &ZEDIT, which toggled celltab styles on
+     the checked rows: the button is greyed out per row rather than hidden
+     for everybody. Feature control is a characteristic of the operation -
+     there is no separate statement for it. */
+  action ( features : instance ) SendAction parameter ZCDS_ABS_EINV_APACT result [1] $self;
+
+  validation checkAction on save { field ActionType, ReasonCode; }
+
+  association _Line { create; }
+  association _Party { create; }
+  association _TaxSubtotal { create; }
+  association _Allowance { create; }
+  association _Note { create; }
+  association _Reference { create; }
+  association _ItemAttr { create; }
+
+  mapping for ztedoc_aph
+    {
+      Uuid = uuid;
+      DocumentNumber = documentnumber;
+      DocumentId = documentid;
+      Status = status;
+      ActionType = action_type;
+      ReasonCode = reason_code;
+      MatchStatus = match_status;
+      CommentText = comment_txt;
+      ApiMessage = api_message;
+      UblVersionId = ubl_version;
+      CustomizationId = customization_id;
+      ProfileId = profile_id;
+      SbdhDocumentTypeId = sbdh_doc_type_id;
+      SbdhProcessId = sbdh_process_id;
+      SbdhCountry = sbdh_country;
+      SbdhSenderId = sbdh_sender_id;
+      SbdhReceiverId = sbdh_receiver_id;
+      SbdhCreatedTimestamp = sbdh_created_ts;
+      IssueDate = issue_date;
+      IssueTime = issue_time;
+      DueDate = due_date;
+      InvoiceTypeCode = inv_type_code;
+      InvoiceTypeName = inv_type_name;
+      TaxPointDate = tax_point_date;
+      Currency = currency;
+      TaxCurrency = tax_currency;
+      AccountingCost = acc_cost;
+      BuyerReference = buyer_ref;
+      PeriodStart = period_start;
+      PeriodEnd = period_end;
+      PeriodDescriptionCode = period_desc_code;
+      TaxExchangeSourceCurrency = tax_exc_src_curr;
+      TaxExchangeTargetCurrency = tax_exc_tgt_curr;
+      TaxExchangeRate = tax_exc_rate;
+      TaxExchangeDate = tax_exc_date;
+      LineExtensionAmount = line_ext_amt;
+      AllowanceTotal = allowance_total;
+      ChargeTotal = charge_total;
+      TaxExclusiveAmount = tax_excl_amt;
+      VatTotal = vat_total;
+      TaxInclusiveAmount = tax_incl_amt;
+      PrepaidAmount = prepaid_amt;
+      PayableRoundingAmount = payable_rnd_amt;
+      PayableAmount = payable_amt;
+      VatTotalTaxCurrency = vat_total_taxcur;
+      ActualDeliveryDate = actual_del_date;
+      DeliveryLocationId = del_loc_id;
+      DeliveryLocationIdScheme = del_loc_id_sch;
+      DeliveryTermsId = del_terms_id;
+      PaymentMeansCode = pay_means_code;
+      PaymentMeansName = pay_means_name;
+      PaymentMeansId = pay_means_id;
+      PaymentInstructionNote = pay_instr_note;
+      PaymentId = pay_id;
+      PayeeAccountId = payee_acc_id;
+      PayeeAccountScheme = payee_acc_sch;
+      PayeeAccountName = payee_acc_name;
+      PayeeBranchId = payee_branch_id;
+      CardAccountId = card_acc_id;
+      CardNetwork = card_network;
+      CardHolder = card_holder;
+      MandateId = mandate_id;
+      PayerAccountId = payer_acc_id;
+      PaymentTermsId = pay_terms_id;
+      PaymentTermsNote = pay_terms_note;
+      PaymentTermsAmount = pay_terms_amt;
+      PaymentTermsCurrency = pay_terms_curr;
+      PaymentTermsDueDate = pay_terms_due;
+      PrepaidId = prepaid_id;
+      PrepaidPaidAmount = prepaid_paid_amt;
+      PrepaidCurrency = prepaid_curr;
+      PrepaidReceivedDate = prepaid_rcvd_date;
+      PrepaidInstructionId = prepaid_instr_id;
+      LineCount = line_count;
+      JsonPayload = json_payload;
+      CreatedOn = created_on;
+      CreatedAt = created_at;
+      CreatedBy = created_by;
+      ChangedOn = changed_on;
+      ChangedAt = changed_at;
+      ChangedBy = changed_by;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_API alias Line
+persistent table ztedoc_api
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, LineId, DocumentNumber;
+
+  mapping for ztedoc_api
+    {
+      Uuid = uuid;
+      LineId = line_id;
+      DocumentNumber = documentnumber;
+      Quantity = quantity;
+      UnitIso = unit_iso;
+      UnitSap = unit_sap;
+      Currency = currency;
+      LineNetAmount = line_net_amt;
+      LineTaxAmount = line_tax_amt;
+      LineAccountingCost = line_acc_cost;
+      PeriodStart = period_start;
+      PeriodEnd = period_end;
+      PeriodDescriptionCode = period_desc_code;
+      DeliveryDate = del_date;
+      DeliveryTermsId = del_terms_id;
+      ItemName = item_name;
+      ItemDescription = item_desc;
+      BuyerItemId = buyer_item_id;
+      SellerItemId = seller_item_id;
+      StandardItemId = std_item_id;
+      StandardItemIdScheme = std_item_id_sch;
+      OriginCountry = origin_country;
+      PackQuantity = pack_qty;
+      PackUnitIso = pack_unit_iso;
+      PackUnitSap = pack_unit_sap;
+      TaxCategory = tax_cat;
+      TaxPercent = tax_percent;
+      TaxScheme = tax_scheme;
+      TaxExemptionReasonCode = tax_exe_rsn_code;
+      TaxExemptionReason = tax_exe_rsn;
+      PriceAmount = price_amt;
+      PriceCurrency = price_curr;
+      PriceBaseQuantity = price_base_qty;
+      PriceUnitIso = price_unit_iso;
+      PriceUnitSap = price_unit_sap;
+      PriceAllowanceIndicator = price_allow_ind;
+      PriceAllowanceReasonCode = price_allow_rsn_code;
+      PriceAllowanceReason = price_allow_rsn;
+      PriceAllowanceAmount = price_allow_amt;
+      PriceGrossAmount = price_gross_amt;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_APP alias Party
+persistent table ztedoc_app
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, LineId, PartyRole, DocumentNumber;
+
+  mapping for ztedoc_app
+    {
+      Uuid = uuid;
+      LineId = line_id;
+      PartyRole = party_role;
+      DocumentNumber = documentnumber;
+      RoleCode = role_code;
+      RoleCodeList = role_code_list;
+      RoleName = role_name;
+      EndpointId = endpoint_id;
+      EndpointScheme = endpoint_sch;
+      PartyId = party_id;
+      PartyIdScheme = party_id_sch;
+      PartyIdSchemeName = party_id_sch_name;
+      PartyName = party_name;
+      Street = street;
+      AdditionalStreet = add_street;
+      AddressLine = addr_line;
+      City = city;
+      PostalZone = postal_zone;
+      Subdivision = subdiv;
+      SubdivisionCode = subdiv_code;
+      Country = country;
+      VatId = vat_id;
+      VatIdScheme = vat_id_sch;
+      TaxScheme = tax_scheme;
+      RegistrationName = reg_name;
+      LegalId = legal_id;
+      LegalIdScheme = legal_id_sch;
+      LegalAgencyId = legal_agency_id;
+      LegalAgencyName = legal_agency_name;
+      LegalForm = legal_form;
+      ContactName = contact_name;
+      ContactTelephone = contact_tel;
+      ContactMail = contact_mail;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_APT alias TaxSubtotal
+persistent table ztedoc_apt
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, Sequence, DocumentNumber;
+
+  mapping for ztedoc_apt
+    {
+      Uuid = uuid;
+      Sequence = seq;
+      DocumentNumber = documentnumber;
+      TaxableAmount = taxable_amt;
+      TaxAmount = tax_amt;
+      Currency = currency;
+      TaxCategory = tax_cat;
+      TaxPercent = tax_percent;
+      TaxScheme = tax_scheme;
+      TaxExemptionReasonCode = tax_exe_rsn_code;
+      TaxExemptionReason = tax_exe_rsn;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_APA alias Allowance
+persistent table ztedoc_apa
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, LineId, Sequence, DocumentNumber;
+
+  mapping for ztedoc_apa
+    {
+      Uuid = uuid;
+      LineId = line_id;
+      Sequence = seq;
+      DocumentNumber = documentnumber;
+      ChargeIndicator = charge_ind;
+      AllowanceChargeReasonCode = ac_rsn_code;
+      AllowanceChargeReasonText = ac_rsn_text;
+      Multiplier = multiplier;
+      Amount = amount;
+      BaseAmount = base_amt;
+      Currency = currency;
+      TaxCategory = tax_cat;
+      TaxPercent = tax_percent;
+      TaxScheme = tax_scheme;
+      TaxExemptionReasonCode = tax_exe_rsn_code;
+      TaxExemptionReason = tax_exe_rsn;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_APN alias Note
+persistent table ztedoc_apn
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, LineId, Sequence, DocumentNumber;
+
+  mapping for ztedoc_apn
+    {
+      Uuid = uuid;
+      LineId = line_id;
+      Sequence = seq;
+      DocumentNumber = documentnumber;
+      SubjectCode = subject_code;
+      NoteText = note_text;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_APR alias Reference
+persistent table ztedoc_apr
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, LineId, ReferenceType, Sequence, DocumentNumber;
+
+  mapping for ztedoc_apr
+    {
+      Uuid = uuid;
+      LineId = line_id;
+      ReferenceType = ref_type;
+      Sequence = seq;
+      DocumentNumber = documentnumber;
+      ReferenceId = ref_id;
+      ReferenceIdScheme = ref_id_sch;
+      ReferenceLineId = ref_line_id;
+      SalesOrderId = so_id;
+      SalesOrderLineId = so_line_id;
+      ReferenceDate = ref_date;
+      DocumentTypeCode = doc_type_code;
+      DocumentStatusCode = doc_status_code;
+      ReferenceDescription = ref_desc;
+      ReferenceUuid = ref_uuid;
+      ReferenceAmount = ref_amount;
+      ReferenceCurrency = ref_curr;
+      AttachmentMimeType = att_mime;
+      AttachmentFilename = att_filename;
+      AttachmentContent = att_content;
+      AttachmentUri = att_uri;
+    }
+}
+
+define behavior for ZCDS_INT_EDOC_APX alias ItemAttribute
+persistent table ztedoc_apx
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  /* A to-parent association has to be declared by the child and exposed on
+     its projection, even when nothing navigates it: RAP needs it to tie the
+     child back to the composition. */
+  association _Document;
+
+  field ( readonly : update ) Uuid, LineId, AttributeType, Sequence, DocumentNumber;
+
+  mapping for ztedoc_apx
+    {
+      Uuid = uuid;
+      LineId = line_id;
+      AttributeType = attr_type;
+      Sequence = seq;
+      DocumentNumber = documentnumber;
+      AttributeName = attr_name;
+      AttributeNameCode = attr_name_code;
+      AttributeValue = attr_value;
+      AttributeScheme = attr_scheme;
+      AttributeListId = attr_list_id;
+      AttributeListVersion = attr_list_ver;
+    }
+}

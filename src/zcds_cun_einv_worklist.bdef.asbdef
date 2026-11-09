@@ -1,0 +1,70 @@
+/* =====================================================================
+   Behaviour for the live worklist.
+
+   The worklist is a read-only view over LIVE candidates (section 39): a
+   row exists because a journal entry or billing document matches
+   ZTEINV_INVMAP, not because anything was ever stored. There is no
+   persistent table behind it, so this is an UNMANAGED behaviour that owns
+   no data. Every action delegates to the real business object
+   ZCDS_INT_EINV_DOC with EML.
+
+   No create, update or delete: a candidate is not a record, and the only
+   way to bring one into existence is to materialise it, which is what
+   PickUp does.
+
+   WHY SUBMIT CAN RUN ON AN UNPROCESSED ROW
+   SubmitEInvoice needs a ZTEINV_DOC row, and a candidate that was never
+   picked up has none. So Submit here means "create the row if it is
+   missing, then submit it" - PickUpDocuments and submit_data for one
+   document, in one click. The HANA cockpit behaved the same way without
+   saying so: GT_FINAL held unprocessed lines and &CREATE called
+   einv_ewb_create, which inserted the row before submitting it.
+
+   The other four actions act on a document the platform already knows,
+   so they do NOT materialise. Feature control greys them out on a row
+   with no Clear document id.
+   ===================================================================== */
+unmanaged implementation in class zbp_cds_cun_einv_worklist unique;
+strict ( 2 );
+
+define behavior for ZCDS_CUN_EINV_WORKLIST alias Worklist
+/* Every action is declared ( authorization : instance ) as well as
+   ( features : instance ): without it %action-<name> is not a component
+   of the authorization result and GET_INSTANCE_AUTHORIZATIONS cannot
+   address the action at all. The implementation allows everything for
+   now, as on ZCDS_INT_EINV_DOC - the company-code restriction belongs in
+   the IAM business role and is evaluated once that field exists. */
+authorization master ( instance )
+/* strict ( 2 ) requires every entity to be lock master or lock dependent,
+   with no exemption for a behaviour that has no standard operations. The
+   LOCK implementation is empty: there is nothing here to lock, because
+   the actions lock through ZCDS_INT_EINV_DOC when their EML modify runs. */
+lock master
+{
+  /* The tenant asks for readonly on every key field even though this
+     behaviour declares no create and no update - the check is on the key,
+     not on the operations. An earlier draft left these off on the
+     reasoning that there is nothing to protect them from; the activation
+     disagreed. See section 48. */
+  field ( readonly ) CompanyCode, AccountingDocument, FiscalYear,
+                     BillingDocument, ProjectId, SystemId, Country,
+                     DocumentTypeCode;
+
+  /* Every action carries a Worklist prefix. In OData V2 an action
+     becomes a function import in a FLAT, service-wide namespace, and
+     ZSD_EINV_DOC exposes both this entity and ZCDS_CUN_EINV_DOC - whose
+     actions are SubmitEInvoice, RefreshStatus, RequestPrintout,
+     SellerAction and CancelEInvoice. Sharing those names produced five
+     "Duplicate action external name" errors on the service binding. The
+     prefix is the whole fix; the button labels come from
+     ZCDS_MET_EINV_WORKLIST and are unchanged. */
+
+  /* Materialise only - the explicit half of what Submit does implicitly. */
+  action ( features : instance, authorization : instance ) WorklistPickUp;
+
+  action ( features : instance, authorization : instance ) WorklistSubmitEInvoice;
+  action ( features : instance, authorization : instance ) WorklistRefreshStatus;
+  action ( features : instance, authorization : instance ) WorklistRequestPrintout;
+  action ( features : instance, authorization : instance ) WorklistSellerAction parameter ZCDS_ABS_EINV_SELLACT;
+  action ( features : instance, authorization : instance ) WorklistCancelEInvoice parameter ZCDS_ABS_EINV_CANCEL;
+}
