@@ -1,0 +1,52 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Item attribute',
+                     typeNamePlural: 'Item attributes' } }
+
+annotate entity ZCDS_CUN_EDOC_SBX
+    with
+{
+  @UI.facet: [ { id: 'ItemAttributeDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'Item attribute',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume', importance: #HIGH }],
+         identification: [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume' } ] }
+  LineId;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Item attribute type', importance: #HIGH }],
+         identification: [ { position: 30, label: 'Item attribute type' } ] }
+  AttributeType;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Sequence number', importance: #HIGH }],
+         identification: [ { position: 40, label: 'Sequence number' } ] }
+  Sequence;
+
+  @UI: { identification: [ { position: 50, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Item attribute name (BT-160)', importance: #HIGH }],
+         identification: [ { position: 60, label: 'Item attribute name (BT-160)' } ] }
+  AttributeName;
+
+  @UI: { identification: [ { position: 70, label: 'Item attribute name code' } ] }
+  AttributeNameCode;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Item attribute value / identifier / code', importance: #HIGH }],
+         identification: [ { position: 80, label: 'Item attribute value / identifier / code' } ] }
+  AttributeValue;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Identifier scheme ID', importance: #HIGH }],
+         identification: [ { position: 90, label: 'Identifier scheme ID' } ] }
+  AttributeScheme;
+
+  @UI: { identification: [ { position: 100, label: 'Classification list ID' } ] }
+  AttributeListId;
+
+  @UI: { identification: [ { position: 110, label: 'Classification list version ID' } ] }
+  AttributeListVersion;
+
+}

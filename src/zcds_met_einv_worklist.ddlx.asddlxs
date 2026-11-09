@@ -1,0 +1,122 @@
+
+/* #CUSTOMER, not #CORE: #CORE is SAP's layer. A customer metadata
+   extension in a Z namespace is rejected on activation in some releases
+   when it claims #CORE, and is ranked below any SAP extension when it is
+   not. */
+@Metadata.layer: #CUSTOMER
+@UI: { headerInfo: { typeName: 'e-Invoice',
+                     typeNamePlural: 'e-Invoices',
+                     title: { type: #STANDARD, value: 'AccountingDocument' },
+                     description: { type: #STANDARD, value: 'EffectiveStatus' } },
+       presentationVariant: [ { sortOrder: [ { by: 'PostingDate', direction: #DESC } ] } ] }
+annotate entity ZCDS_CUN_EINV_WORKLIST
+    with
+{
+  /* The action buttons of the list report toolbar. Fiori Elements
+     collects every @UI.lineItem annotation in the entity into one
+     LineItem collection, so the #FOR_ACTION entries can hang off any
+     field - they sit here for the same reason they sit on
+     AccountingDocument in ZCDS_MET_EINV_DOC: one place to read them.
+
+     Same five actions as the cockpit, plus Pick Up. They are not the
+     cockpit's actions: they are the worklist's own, declared in
+     ZCDS_CUN_EINV_WORKLIST and implemented by delegation. Keep the
+     dataAction names in step with that behaviour definition.
+
+     Action positions start at 200, clear of the field positions 10-100.
+     Fields and actions share one LineItem collection, and an action
+     sharing a position with a column leaves their relative order
+     undefined.
+
+     invocationGrouping: #CHANGE_SET makes a multi-row press ONE request
+     and one RAP LUW, so submitting twenty invoices is twenty rows in a
+     single save rather than twenty round trips. Without it the list
+     report sends one call per selected row and a failure halfway through
+     leaves the batch half committed - which is what the HANA
+     submit_data_batch loop did, and the one thing worth not inheriting. */
+  @UI.lineItem: [ { position: 10, label: 'Accounting Document' },
+                  { type: #FOR_ACTION, dataAction: 'WorklistPickUp',
+                    label: 'Pick Up', position: 200,
+                    invocationGrouping: #CHANGE_SET },
+                  { type: #FOR_ACTION, dataAction: 'WorklistSubmitEInvoice',
+                    label: 'Submit e-Invoice', position: 210,
+                    invocationGrouping: #CHANGE_SET },
+                  { type: #FOR_ACTION, dataAction: 'WorklistRefreshStatus',
+                    label: 'Refresh Status', position: 220,
+                    invocationGrouping: #CHANGE_SET },
+                  { type: #FOR_ACTION, dataAction: 'WorklistRequestPrintout',
+                    label: 'Request Printout', position: 230,
+                    invocationGrouping: #CHANGE_SET },
+                  /* Seller Action and Cancel carry a parameter, so each
+                     selected row opens its own dialog. Grouping them into
+                     one change set would still be one LUW, but the dialog
+                     is per row either way - left ungrouped so a rejected
+                     row does not roll back the ones already confirmed. */
+                  { type: #FOR_ACTION, dataAction: 'WorklistSellerAction',
+                    label: 'Seller Action', position: 240 },
+                  { type: #FOR_ACTION, dataAction: 'WorklistCancelEInvoice',
+                    label: 'Cancel e-Invoice', position: 250 } ]
+  AccountingDocument;
+
+  @UI.lineItem: [ { position: 20, label: 'Billing Document' } ]
+  BillingDocument;
+
+  @UI.lineItem: [ { position: 30, label: 'Company Code' } ]
+  CompanyCode;
+
+  @UI.lineItem: [ { position: 40, label: 'Fiscal Year' } ]
+  FiscalYear;
+
+  @UI.lineItem: [ { position: 50, label: 'Posting Date' } ]
+  PostingDate;
+
+  @UI.lineItem: [ { position: 60, label: 'Doc. Type' } ]
+  DocumentTypeCode;
+
+  @UI.lineItem: [ { position: 70, label: 'Status', criticality: 'StatusCriticality' } ]
+  EffectiveStatus;
+
+  @UI.lineItem: [ { position: 80, label: 'Processed' } ]
+  IsProcessed;
+
+  @UI.lineItem: [ { position: 90, label: 'Document ID' } ]
+  EInvoiceDocumentId;
+
+  @UI.lineItem: [ { position: 100, label: 'Message' } ]
+  EffectiveMessage;
+
+  /* The government stage, as its own columns.
+
+     Deliberately next to Status rather than at the end: the question the
+     dashboard is read for is "did the authority accept this", and a
+     column the user has to scroll for does not answer it. Status at 70 is
+     the effective status - submission, async, then government, whichever
+     is furthest along - and 110/120 sit immediately after Message so the
+     pair reads together.
+
+     These are blank on every row until the DATA_POSTING job writes
+     ZTEINV_SALES_ST. A blank government status means the authority has
+     not reported yet, which is not the same as an error, so the
+     criticality maps blank to neutral rather than to red. */
+  @UI.lineItem: [ { position: 110, label: 'Government Status',
+                    criticality: 'GovernmentCriticality' } ]
+  GovernmentStatus;
+
+  @UI.lineItem: [ { position: 120, label: 'Government Message' } ]
+  @UI.multiLineText: true
+  GovernmentMessage;
+
+  @UI.lineItem: [ { position: 125, label: 'Government Action',
+                    importance: #MEDIUM } ]
+  GovernmentAction;
+
+  @UI.lineItem: [ { position: 130, label: 'Gov. Resp. Code',
+                    importance: #LOW } ]
+  GovernmentResponseCode;
+
+  @UI.hidden: true
+  StatusCriticality;
+
+  @UI.hidden: true
+  GovernmentCriticality;
+}

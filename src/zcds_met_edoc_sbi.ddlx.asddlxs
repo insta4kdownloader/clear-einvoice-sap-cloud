@@ -1,0 +1,142 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Invoice line',
+                     typeNamePlural: 'Lines' } }
+
+annotate entity ZCDS_CUN_EDOC_SBI
+    with
+{
+  @UI.facet: [ { id: 'LineDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'Invoice line',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Invoice line ID (BT-126); blank = docume', importance: #HIGH }],
+         identification: [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume' } ] }
+  LineId;
+
+  @UI: { identification: [ { position: 30, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Invoiced quantity (BT-129)', importance: #HIGH }],
+         identification: [ { position: 40, label: 'Invoiced quantity (BT-129)' } ] }
+  Quantity;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Unit of measure, UN/ECE Rec.20 code', importance: #HIGH }],
+         identification: [ { position: 50, label: 'Unit of measure, UN/ECE Rec.20 code' } ] }
+  UnitIso;
+
+  @UI: { identification: [ { position: 60, label: 'Unit of measure (SAP internal)' } ] }
+  UnitSap;
+
+  @UI: { lineItem:       [ { position: 90, label: 'Line currency', importance: #HIGH }],
+         identification: [ { position: 70, label: 'Line currency' } ] }
+  Currency;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Invoice line net amount (BT-131)', importance: #HIGH }],
+         identification: [ { position: 80, label: 'Invoice line net amount (BT-131)' } ] }
+  LineNetAmount;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Invoice line VAT amount', importance: #HIGH }],
+         identification: [ { position: 90, label: 'Invoice line VAT amount' } ] }
+  LineTaxAmount;
+
+  @UI: { identification: [ { position: 100, label: 'Buyer accounting reference (BT-19)' } ] }
+  LineAccountingCost;
+
+  @UI: { identification: [ { position: 110, label: 'Invoicing period start date' } ] }
+  PeriodStart;
+
+  @UI: { identification: [ { position: 120, label: 'Invoicing period end date' } ] }
+  PeriodEnd;
+
+  @UI: { identification: [ { position: 130, label: 'Invoicing period description code' } ] }
+  PeriodDescriptionCode;
+
+  @UI: { identification: [ { position: 140, label: 'Actual delivery date (BT-72)' } ] }
+  DeliveryDate;
+
+  @UI: { identification: [ { position: 150, label: 'Delivery terms (Incoterms)' } ] }
+  DeliveryTermsId;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Item name (BT-153)', importance: #HIGH }],
+         identification: [ { position: 160, label: 'Item name (BT-153)' } ] }
+  ItemName;
+
+  @UI: { identification: [ { position: 170, label: 'Item description (BT-154)' } ] }
+  ItemDescription;
+
+  @UI: { identification: [ { position: 180, label: 'Item buyers identifier (BT-156)' } ] }
+  BuyerItemId;
+
+  @UI: { identification: [ { position: 190, label: 'Item sellers identifier (BT-155)' } ] }
+  SellerItemId;
+
+  @UI: { identification: [ { position: 200, label: 'Item standard identifier (BT-157)' } ] }
+  StandardItemId;
+
+  @UI: { identification: [ { position: 210, label: 'Identifier scheme ID' } ] }
+  StandardItemIdScheme;
+
+  @UI: { identification: [ { position: 220, label: 'Item country of origin (BT-159)' } ] }
+  OriginCountry;
+
+  @UI: { identification: [ { position: 230, label: 'Pack quantity' } ] }
+  PackQuantity;
+
+  @UI: { identification: [ { position: 240, label: 'Unit of measure, UN/ECE Rec.20 code' } ] }
+  PackUnitIso;
+
+  @UI: { identification: [ { position: 250, label: 'Pack unit (SAP internal)' } ] }
+  PackUnitSap;
+
+  @UI: { identification: [ { position: 260, label: 'VAT category code' } ] }
+  TaxCategory;
+
+  @UI: { lineItem:       [ { position: 80, label: 'VAT rate', importance: #HIGH }],
+         identification: [ { position: 270, label: 'VAT rate' } ] }
+  TaxPercent;
+
+  @UI: { identification: [ { position: 280, label: 'Tax scheme ID' } ] }
+  TaxScheme;
+
+  @UI: { identification: [ { position: 290, label: 'VAT exemption reason code' } ] }
+  TaxExemptionReasonCode;
+
+  @UI: { identification: [ { position: 300, label: 'VAT exemption reason text' } ] }
+  TaxExemptionReason;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Item net price (BT-146)', importance: #HIGH }],
+         identification: [ { position: 310, label: 'Item net price (BT-146)' } ] }
+  PriceAmount;
+
+  @UI: { identification: [ { position: 320, label: 'Price currency' } ] }
+  PriceCurrency;
+
+  @UI: { identification: [ { position: 330, label: 'Item price base quantity (BT-149)' } ] }
+  PriceBaseQuantity;
+
+  @UI: { identification: [ { position: 340, label: 'Unit of measure, UN/ECE Rec.20 code' } ] }
+  PriceUnitIso;
+
+  @UI: { identification: [ { position: 350, label: 'Price base unit (SAP internal)' } ] }
+  PriceUnitSap;
+
+  @UI: { identification: [ { position: 360, label: 'Charge indicator (true = charge, false =' } ] }
+  PriceAllowanceIndicator;
+
+  @UI: { identification: [ { position: 370, label: 'Allowance / charge reason code' } ] }
+  PriceAllowanceReasonCode;
+
+  @UI: { identification: [ { position: 380, label: 'Allowance / charge reason' } ] }
+  PriceAllowanceReason;
+
+  @UI: { identification: [ { position: 390, label: 'Item price discount (BT-147)' } ] }
+  PriceAllowanceAmount;
+
+  @UI: { identification: [ { position: 400, label: 'Item gross price (BT-148)' } ] }
+  PriceGrossAmount;
+
+}

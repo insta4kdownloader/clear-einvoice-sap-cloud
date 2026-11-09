@@ -1,0 +1,52 @@
+/* =====================================================================
+   UI for the extract archive.
+
+   The ArchiveFacet of ZCDS_MET_EINV_DOC is a #LINEITEM_REFERENCE onto
+   _Archive and Fiori Elements renders it from this entity's own
+   @UI.lineItem - without this file the tab has no columns. Section 55 is
+   where that was learned, twice.
+
+   CONTENT carries @Semantics.largeObject in ZCDS_INT_EINV_ZIP, so Fiori
+   renders it as a download link rather than as bytes. It is given a
+   lineItem position so the link is on the row itself; there is one row,
+   and making the user open it to find the download would be a step for
+   nothing.
+   ===================================================================== */
+@Metadata.layer: #CUSTOMER
+
+@UI: { headerInfo: { typeName:       'Extract Archive',
+                     typeNamePlural: 'Extract Archives',
+                     title:          { type: #STANDARD, value: 'FileName' },
+                     description:    { type: #STANDARD, value: 'CommandId' } } }
+
+annotate entity ZCDS_CUN_EINV_ZIP
+    with
+{
+  @UI.facet: [ { id:       'ArchiveDetail',
+                 purpose:  #STANDARD,
+                 type:     #IDENTIFICATION_REFERENCE,
+                 label:    'Extract Archive',
+                 position: 10 } ]
+
+  @UI: { lineItem:       [ { position: 10, label: 'Archive', importance: #HIGH } ],
+         identification: [ { position: 10, label: 'Archive' } ] }
+  Content;
+
+  @UI: { lineItem:       [ { position: 20, label: 'File Name' } ],
+         identification: [ { position: 20, label: 'File Name' } ] }
+  FileName;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Command ID' } ],
+         identification: [ { position: 30, label: 'Command ID' } ] }
+  CommandId;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Created On' } ],
+         identification: [ { position: 40, label: 'Created On' } ] }
+  CreatedOn;
+
+  @UI.identification: [ { position: 50, label: 'Created At' } ]
+  CreatedAt;
+
+  @UI.hidden: true
+  MimeType;
+}

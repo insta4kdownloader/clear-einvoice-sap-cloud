@@ -1,0 +1,92 @@
+/* UI for the Relevance Mapping tab of ELT Config Details. Section 90. */
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName:       'Relevance Mapping',
+                     typeNamePlural: 'Relevance Mappings',
+                     title: { type: #STANDARD, label: 'Relevance Mapping' } } }
+annotate entity ZCDS_CUN_COMP_INVMAP with
+{
+  @UI.facet: [ { id:              'INVMAPFacet',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'Relevance Mapping',
+                 targetQualifier: 'INVMAP_Config_fields',
+                 position:        10 } ]
+
+  @UI: { lineItem:       [ { position: 10, qualifier: 'INVMAP_Config',
+                             label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'INVMAP_Config_fields',
+                             label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, qualifier: 'INVMAP_Config',
+                             label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'INVMAP_Config_fields',
+                             label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, qualifier: 'INVMAP_Config',
+                             label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'INVMAP_Config_fields',
+                             label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, qualifier: 'INVMAP_Config',
+                             label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'INVMAP_Config_fields',
+                             label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, qualifier: 'INVMAP_Config',
+                             label: 'Billing Type' } ],
+         identification: [ { position: 50, qualifier: 'INVMAP_Config_fields',
+                             label: 'Billing Type' } ] }
+  BillingDocumentType;
+
+  @UI: { lineItem:       [ { position: 60, qualifier: 'INVMAP_Config',
+                             label: 'Accounting Doc. Type' } ],
+         identification: [ { position: 60, qualifier: 'INVMAP_Config_fields',
+                             label: 'Accounting Doc. Type' } ] }
+  AccountingDocumentType;
+
+  @UI: { lineItem:       [ { position: 70, qualifier: 'INVMAP_Config',
+                             label: 'Document Type Code' } ],
+         identification: [ { position: 70, qualifier: 'INVMAP_Config_fields',
+                             label: 'Document Type Code' } ] }
+  DocumentTypeCode;
+
+  @UI: { lineItem:       [ { position: 80, qualifier: 'INVMAP_Config',
+                             label: 'e-Invoice' } ],
+         identification: [ { position: 80, qualifier: 'INVMAP_Config_fields',
+                             label: 'e-Invoice' } ] }
+  IsEInvoiceRelevant;
+
+  @UI: { lineItem:       [ { position: 90, qualifier: 'INVMAP_Config',
+                             label: 'e-Way Bill' } ],
+         identification: [ { position: 90, qualifier: 'INVMAP_Config_fields',
+                             label: 'e-Way Bill' } ] }
+  IsEWayBillRelevant;
+
+  @UI: { lineItem:       [ { position: 100, qualifier: 'INVMAP_Config',
+                             label: 'Non-IRN' } ],
+         identification: [ { position: 100, qualifier: 'INVMAP_Config_fields',
+                             label: 'Non-IRN' } ] }
+  IsNonIrn;
+
+  @UI: { lineItem:       [ { position: 110, qualifier: 'INVMAP_Config',
+                             label: 'No Accounting Doc' } ],
+         identification: [ { position: 110, qualifier: 'INVMAP_Config_fields',
+                             label: 'No Accounting Doc' } ] }
+  HasNoAccountingDoc;
+
+  @UI: { lineItem:       [ { position: 120, qualifier: 'INVMAP_Config',
+                             label: 'B2C' } ],
+         identification: [ { position: 120, qualifier: 'INVMAP_Config_fields',
+                             label: 'B2C' } ] }
+  IsB2C;
+
+  @UI: { lineItem:       [ { position: 130, qualifier: 'INVMAP_Config',
+                             label: 'Purchase' } ],
+         identification: [ { position: 130, qualifier: 'INVMAP_Config_fields',
+                             label: 'Purchase' } ] }
+  IsPurchase;
+}

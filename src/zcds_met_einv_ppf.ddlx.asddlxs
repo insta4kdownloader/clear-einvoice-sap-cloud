@@ -1,0 +1,71 @@
+/* =====================================================================
+   UI for the government (PPF) reporting history of one document.
+
+   The PpfFacet of ZCDS_MET_EINV_DOC is a #LINEITEM_REFERENCE onto _Ppf,
+   and Fiori Elements renders it from this entity's own @UI.lineItem.
+   Without this file the Government Reporting table on the object page
+   has no columns.
+
+   ORDER. Newest first, by the authority's own timestamp - date, then
+   time, then milliseconds. The milliseconds matter: PPF entries for one
+   document can share a second, which is exactly why save_ppf_details
+   carries RECV_MSEC at all rather than rounding it away.
+
+   A document with several reasons for one reporting entry shows one row
+   per reason, sharing SEQNO. That is the flattening, surfaced as it is
+   stored rather than re-nested in the UI - the reason text is the
+   content worth reading, and a nested table would bury it one click
+   deeper.
+
+   Section 81.
+   ===================================================================== */
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Government Reporting',
+                     typeNamePlural: 'Government Reporting',
+                     title:          { type: #STANDARD, value: 'PpfStatus' },
+                     description:    { type: #STANDARD, value: 'PpfAction' } },
+       presentationVariant: [ { sortOrder: [ { by: 'ReceivedDate', direction: #DESC },
+                                             { by: 'ReceivedTime', direction: #DESC },
+                                             { by: 'ReceivedMilliseconds', direction: #DESC } ] } ] }
+
+annotate entity ZCDS_CUN_EINV_PPF
+    with
+{
+  @UI.lineItem: [ { position: 10, label: 'Received (UTC)', importance: #HIGH } ]
+  ReceivedDate;
+
+  @UI.lineItem: [ { position: 20, label: 'Time (UTC)', importance: #MEDIUM } ]
+  ReceivedTime;
+
+  @UI.lineItem: [ { position: 30, label: 'Status', importance: #HIGH,
+                    criticality: 'PpfCriticality' } ]
+  PpfStatus;
+
+  @UI.lineItem: [ { position: 40, label: 'Action', importance: #HIGH } ]
+  PpfAction;
+
+  @UI.lineItem: [ { position: 50, label: 'Action Type', importance: #MEDIUM } ]
+  PpfActionType;
+
+  @UI.lineItem: [ { position: 60, label: 'Reason Code', importance: #MEDIUM } ]
+  ReasonCode;
+
+  @UI.lineItem: [ { position: 70, label: 'Reason', importance: #HIGH } ]
+  @UI.multiLineText: true
+  ReasonText;
+
+  @UI.lineItem: [ { position: 80, label: 'Transaction ID', importance: #LOW } ]
+  TransactionId;
+
+  /* Entry and reason index: the key, useful when reading the history
+     against the raw payload, noise otherwise. */
+  @UI.lineItem: [ { position: 90, label: 'Entry', importance: #LOW } ]
+  SequenceNumber;
+
+  @UI.lineItem: [ { position: 100, label: 'Reason No.', importance: #LOW } ]
+  ReasonNumber;
+
+  @UI.hidden: true
+  PpfCriticality;
+}

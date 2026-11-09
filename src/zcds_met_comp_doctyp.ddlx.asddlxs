@@ -1,0 +1,56 @@
+/* UI for the Document Type tab of ELT Config Details. Section 90. */
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName:       'Document Type',
+                     typeNamePlural: 'Document Types',
+                     title: { type: #STANDARD, label: 'Document Type' } } }
+annotate entity ZCDS_CUN_COMP_DOCTYP with
+{
+  @UI.facet: [ { id:              'DOCTYPFacet',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'Document Type',
+                 targetQualifier: 'DOCTYP_Config_fields',
+                 position:        10 } ]
+
+  @UI: { lineItem:       [ { position: 10, qualifier: 'DOCTYP_Config',
+                             label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'DOCTYP_Config_fields',
+                             label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, qualifier: 'DOCTYP_Config',
+                             label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'DOCTYP_Config_fields',
+                             label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, qualifier: 'DOCTYP_Config',
+                             label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'DOCTYP_Config_fields',
+                             label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, qualifier: 'DOCTYP_Config',
+                             label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'DOCTYP_Config_fields',
+                             label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, qualifier: 'DOCTYP_Config',
+                             label: 'Transaction Type' } ],
+         identification: [ { position: 50, qualifier: 'DOCTYP_Config_fields',
+                             label: 'Transaction Type' } ] }
+  TransactionType;
+
+  @UI: { lineItem:       [ { position: 60, qualifier: 'DOCTYP_Config',
+                             label: 'Document Type Code' } ],
+         identification: [ { position: 60, qualifier: 'DOCTYP_Config_fields',
+                             label: 'Document Type Code' } ] }
+  DocumentTypeCode;
+
+  @UI: { lineItem:       [ { position: 70, qualifier: 'DOCTYP_Config',
+                             label: 'Description' } ],
+         identification: [ { position: 70, qualifier: 'DOCTYP_Config_fields',
+                             label: 'Description' } ] }
+  DocumentTypeDescription;
+}

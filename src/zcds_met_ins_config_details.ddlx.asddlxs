@@ -1,0 +1,39 @@
+@Metadata.layer: #CORE
+@UI:{ headerInfo: { typeName: 'Instrumentation Config Details',
+                    typeNamePlural: 'Instrumentation Config',
+                    title: { type: #STANDARD, label: 'Instrumentation Config Details' }}}
+annotate entity ZCDS_CUN_INS_CONFIG with
+{
+  @UI.facet: [{ id: 'Projectid3',
+                  purpose: #STANDARD,
+                  type: #IDENTIFICATION_REFERENCE,
+                  label: 'Instrumentation Config',
+                  targetQualifier: 'INS_Config_fields',
+                  position: 01 }]
+
+@UI: { lineItem: [{ position: 10,qualifier: 'INS_Config',label: 'Project ID' }],
+         identification: [{ position: 10, qualifier: 'INS_Config_fields', label: 'Project ID' }] }
+Projectid;
+@UI: { lineItem: [{ position: 20,qualifier: 'INS_Config',label: 'Sysid' }],
+         identification: [{ position: 20, qualifier: 'INS_Config_fields', 
+         label: 'Sysid', value: 'Sysid' }] } 
+Sysid;
+@UI: { lineItem: [{ position: 30,qualifier: 'INS_Config',label: 'Labeltype' }],
+         identification: [{ position: 30, qualifier: 'INS_Config_fields',
+          label: 'Labeltype', value: 'Labeltype' }] }
+Labeltype;
+@UI: { lineItem: [{ position: 40,qualifier: 'INS_Config',label: 'Sequence' }],
+         identification: [{ position: 40, qualifier: 'INS_Config_fields',
+          label: 'Sequence', value: 'Sequence' }] }
+Sequence;
+@UI: { lineItem: [{ position: 50,qualifier: 'INS_Config',label: 'Low' }],
+         identification: [{ position: 50, qualifier: 'INS_Config_fields', label: 'Low value', value: 'Low' }] }
+Low;
+@UI: { lineItem: [{ position: 60,qualifier: 'INS_Config',label: 'High' }],
+         identification: [{ position: 60, qualifier: 'INS_Config_fields', label: 'High Value', value: 'High' }] }
+High;
+/* Associations */
+//_COMPANY_DETAILS;
+
+
+}

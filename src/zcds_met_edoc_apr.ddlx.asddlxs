@@ -1,0 +1,83 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Document reference',
+                     typeNamePlural: 'References' } }
+
+annotate entity ZCDS_CUN_EDOC_APR
+    with
+{
+  @UI.facet: [ { id: 'ReferenceDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'Document reference',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume', importance: #HIGH }],
+         identification: [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume' } ] }
+  LineId;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Document reference type', importance: #HIGH }],
+         identification: [ { position: 30, label: 'Document reference type' } ] }
+  ReferenceType;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Sequence number', importance: #HIGH }],
+         identification: [ { position: 40, label: 'Sequence number' } ] }
+  Sequence;
+
+  @UI: { identification: [ { position: 50, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Referenced document ID', importance: #HIGH }],
+         identification: [ { position: 60, label: 'Referenced document ID' } ] }
+  ReferenceId;
+
+  @UI: { identification: [ { position: 70, label: 'Identifier scheme ID' } ] }
+  ReferenceIdScheme;
+
+  @UI: { identification: [ { position: 80, label: 'Referenced line ID' } ] }
+  ReferenceLineId;
+
+  @UI: { identification: [ { position: 90, label: 'Sales order reference (BT-14)' } ] }
+  SalesOrderId;
+
+  @UI: { identification: [ { position: 100, label: 'Sales order line reference' } ] }
+  SalesOrderLineId;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Referenced document issue date', importance: #HIGH }],
+         identification: [ { position: 110, label: 'Referenced document issue date' } ] }
+  ReferenceDate;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Referenced document type code', importance: #HIGH }],
+         identification: [ { position: 120, label: 'Referenced document type code' } ] }
+  DocumentTypeCode;
+
+  @UI: { identification: [ { position: 130, label: 'Referenced document status code' } ] }
+  DocumentStatusCode;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Referenced document description', importance: #HIGH }],
+         identification: [ { position: 140, label: 'Referenced document description' } ] }
+  ReferenceDescription;
+
+  @UI: { identification: [ { position: 150, label: 'Referenced document UUID' } ] }
+  ReferenceUuid;
+
+  @UI: { identification: [ { position: 160, label: 'Referenced amount' } ] }
+  ReferenceAmount;
+
+  @UI: { identification: [ { position: 170, label: 'Referenced amount currency' } ] }
+  ReferenceCurrency;
+
+  @UI: { identification: [ { position: 180, label: 'Attachment MIME code' } ] }
+  AttachmentMimeType;
+
+  @UI: { identification: [ { position: 190, label: 'Attachment file name' } ] }
+  AttachmentFilename;
+
+  @UI: { identification: [ { position: 200, label: 'Attachment content (base64)' } ] }
+  AttachmentContent;
+
+  @UI: { identification: [ { position: 210, label: 'External document location' } ] }
+  AttachmentUri;
+
+}

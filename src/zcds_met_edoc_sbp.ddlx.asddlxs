@@ -1,0 +1,119 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Party',
+                     typeNamePlural: 'Parties' } }
+
+annotate entity ZCDS_CUN_EDOC_SBP
+    with
+{
+  @UI.facet: [ { id: 'PartyDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'Party',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Invoice line ID (BT-126); blank = docume', importance: #HIGH }],
+         identification: [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume' } ] }
+  LineId;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Party role', importance: #HIGH }],
+         identification: [ { position: 30, label: 'Party role' } ] }
+  PartyRole;
+
+  @UI: { identification: [ { position: 40, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { identification: [ { position: 50, label: 'Party role code' } ] }
+  RoleCode;
+
+  @UI: { identification: [ { position: 60, label: 'Party role code list ID' } ] }
+  RoleCodeList;
+
+  @UI: { identification: [ { position: 70, label: 'Party role name' } ] }
+  RoleName;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Electronic address (BT-34/49)', importance: #HIGH }],
+         identification: [ { position: 80, label: 'Electronic address (BT-34/49)' } ] }
+  EndpointId;
+
+  @UI: { identification: [ { position: 90, label: 'Electronic address scheme' } ] }
+  EndpointScheme;
+
+  @UI: { identification: [ { position: 100, label: 'Party identifier (BT-29/46/60)' } ] }
+  PartyId;
+
+  @UI: { identification: [ { position: 110, label: 'Identifier scheme ID' } ] }
+  PartyIdScheme;
+
+  @UI: { identification: [ { position: 120, label: 'Identifier scheme name' } ] }
+  PartyIdSchemeName;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Party trading name (BT-28/45)', importance: #HIGH }],
+         identification: [ { position: 130, label: 'Party trading name (BT-28/45)' } ] }
+  PartyName;
+
+  @UI: { identification: [ { position: 140, label: 'Address line 1 / street name' } ] }
+  Street;
+
+  @UI: { identification: [ { position: 150, label: 'Address line 2 / additional street' } ] }
+  AdditionalStreet;
+
+  @UI: { identification: [ { position: 160, label: 'Address line 3' } ] }
+  AddressLine;
+
+  @UI: { lineItem:       [ { position: 50, label: 'City', importance: #HIGH }],
+         identification: [ { position: 170, label: 'City' } ] }
+  City;
+
+  @UI: { identification: [ { position: 180, label: 'Post code' } ] }
+  PostalZone;
+
+  @UI: { identification: [ { position: 190, label: 'Country subdivision' } ] }
+  Subdivision;
+
+  @UI: { identification: [ { position: 200, label: 'Country subdivision code' } ] }
+  SubdivisionCode;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Country code', importance: #HIGH }],
+         identification: [ { position: 210, label: 'Country code' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 30, label: 'VAT identifier (BT-31/48/63)', importance: #HIGH }],
+         identification: [ { position: 220, label: 'VAT identifier (BT-31/48/63)' } ] }
+  VatId;
+
+  @UI: { identification: [ { position: 230, label: 'Identifier scheme ID' } ] }
+  VatIdScheme;
+
+  @UI: { identification: [ { position: 240, label: 'Tax scheme ID' } ] }
+  TaxScheme;
+
+  @UI: { identification: [ { position: 250, label: 'Party legal registration name (BT-27/44)' } ] }
+  RegistrationName;
+
+  @UI: { identification: [ { position: 260, label: 'Legal registration identifier (BT-30/47)' } ] }
+  LegalId;
+
+  @UI: { identification: [ { position: 270, label: 'Identifier scheme ID' } ] }
+  LegalIdScheme;
+
+  @UI: { identification: [ { position: 280, label: 'Legal registration scheme agency ID' } ] }
+  LegalAgencyId;
+
+  @UI: { identification: [ { position: 290, label: 'Legal registration scheme agency name' } ] }
+  LegalAgencyName;
+
+  @UI: { identification: [ { position: 300, label: 'Additional legal information (BT-33)' } ] }
+  LegalForm;
+
+  @UI: { identification: [ { position: 310, label: 'Contact point' } ] }
+  ContactName;
+
+  @UI: { identification: [ { position: 320, label: 'Contact telephone number' } ] }
+  ContactTelephone;
+
+  @UI: { identification: [ { position: 330, label: 'Contact e-mail address' } ] }
+  ContactMail;
+
+}

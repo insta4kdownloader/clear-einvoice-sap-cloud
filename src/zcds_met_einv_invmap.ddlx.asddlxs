@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName: 'Relevance Mapping',
+                     typeNamePlural: 'Relevance Mappings',
+                     title: { type: #STANDARD, value: 'ProjectId' } } }
+annotate entity ZCDS_CUN_EINV_INVMAP
+    with
+{
+  @UI.facet: [ { id: 'EINV_INVMAP_FACET',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Relevance Mapping',
+                 targetQualifier: 'EINV_INVMAP_FIELDS',
+                 position: 10 } ]
+  @UI: { lineItem:       [ { position: 10, label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'EINV_INVMAP_FIELDS', label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'EINV_INVMAP_FIELDS', label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'EINV_INVMAP_FIELDS', label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'EINV_INVMAP_FIELDS', label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Billing Type' } ],
+         identification: [ { position: 50, qualifier: 'EINV_INVMAP_FIELDS', label: 'Billing Type' } ] }
+  BillingDocumentType;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Accounting Doc. Type' } ],
+         identification: [ { position: 60, qualifier: 'EINV_INVMAP_FIELDS', label: 'Accounting Doc. Type' } ] }
+  AccountingDocumentType;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Document Type Code' } ],
+         identification: [ { position: 70, qualifier: 'EINV_INVMAP_FIELDS', label: 'Document Type Code' } ] }
+  DocumentTypeCode;
+
+  @UI: { lineItem:       [ { position: 90, label: 'e-Invoice' } ],
+         identification: [ { position: 90, qualifier: 'EINV_INVMAP_FIELDS', label: 'e-Invoice' } ] }
+  IsEInvoiceRelevant;
+
+  @UI: { lineItem:       [ { position: 100, label: 'e-Way Bill' } ],
+         identification: [ { position: 100, qualifier: 'EINV_INVMAP_FIELDS', label: 'e-Way Bill' } ] }
+  IsEWayBillRelevant;
+
+  @UI: { lineItem:       [ { position: 110, label: 'Non-IRN' } ],
+         identification: [ { position: 110, qualifier: 'EINV_INVMAP_FIELDS', label: 'Non-IRN' } ] }
+  IsNonIrn;
+
+  @UI: { lineItem:       [ { position: 120, label: 'No Accounting Doc.' } ],
+         identification: [ { position: 120, qualifier: 'EINV_INVMAP_FIELDS', label: 'No Accounting Doc.' } ] }
+  HasNoAccountingDoc;
+
+  @UI: { lineItem:       [ { position: 130, label: 'B2C' } ],
+         identification: [ { position: 130, qualifier: 'EINV_INVMAP_FIELDS', label: 'B2C' } ] }
+  IsB2C;
+
+  @UI: { lineItem:       [ { position: 140, label: 'Purchase' } ],
+         identification: [ { position: 140, qualifier: 'EINV_INVMAP_FIELDS', label: 'Purchase' } ] }
+  IsPurchase;
+
+}

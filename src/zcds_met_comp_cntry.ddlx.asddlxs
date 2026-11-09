@@ -1,0 +1,77 @@
+/* UI for the Country Registration tab of ELT Config Details. Mirrors
+   ZCDS_MET_INS_CONFIG_DETAILS: one IDENTIFICATION_REFERENCE facet for the
+   row's own object page, and lineItem for the table on the parent's tab.
+   Section 89. */
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName:       'Country Registration',
+                     typeNamePlural: 'Country Registrations',
+                     title: { type: #STANDARD, label: 'Country Registration' } } }
+annotate entity ZCDS_CUN_COMP_CNTRY with
+{
+  @UI.facet: [ { id:              'CNTRYFacet',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'Country Registration',
+                 targetQualifier: 'CNTRY_Config_fields',
+                 position:        10 } ]
+
+  @UI: { lineItem:       [ { position: 10, qualifier: 'CNTRY_Config',
+                             label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'CNTRY_Config_fields',
+                             label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, qualifier: 'CNTRY_Config',
+                             label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'CNTRY_Config_fields',
+                             label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, qualifier: 'CNTRY_Config',
+                             label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'CNTRY_Config_fields',
+                             label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, qualifier: 'CNTRY_Config',
+                             label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'CNTRY_Config_fields',
+                             label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, qualifier: 'CNTRY_Config',
+                             label: 'Sequence' } ],
+         identification: [ { position: 50, qualifier: 'CNTRY_Config_fields',
+                             label: 'Sequence' } ] }
+  Sequence;
+
+  @UI: { lineItem:       [ { position: 60, qualifier: 'CNTRY_Config',
+                             label: 'VAT Number' } ],
+         identification: [ { position: 60, qualifier: 'CNTRY_Config_fields',
+                             label: 'VAT Number' } ] }
+  VatRegistrationNumber;
+
+  @UI: { lineItem:       [ { position: 70, qualifier: 'CNTRY_Config',
+                             label: 'Country Description' } ],
+         identification: [ { position: 70, qualifier: 'CNTRY_Config_fields',
+                             label: 'Country Description' } ] }
+  CountryDescription;
+
+  @UI: { lineItem:       [ { position: 80, qualifier: 'CNTRY_Config',
+                             label: 'Auto Generate' } ],
+         identification: [ { position: 80, qualifier: 'CNTRY_Config_fields',
+                             label: 'Auto Generate' } ] }
+  AutoGenerate;
+
+  @UI: { lineItem:       [ { position: 90, qualifier: 'CNTRY_Config',
+                             label: 'Auto Cancel' } ],
+         identification: [ { position: 90, qualifier: 'CNTRY_Config_fields',
+                             label: 'Auto Cancel' } ] }
+  AutoCancel;
+
+  @UI: { lineItem:       [ { position: 100, qualifier: 'CNTRY_Config',
+                             label: 'Handler Class' } ],
+         identification: [ { position: 100, qualifier: 'CNTRY_Config_fields',
+                             label: 'Handler Class' } ] }
+  HandlerClass;
+}

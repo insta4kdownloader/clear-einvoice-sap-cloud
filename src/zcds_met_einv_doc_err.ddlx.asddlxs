@@ -1,0 +1,53 @@
+/* =====================================================================
+   UI for the API error rows of the Sales e-Invoice cockpit.
+
+   The ErrorFacet of ZCDS_MET_EINV_DOC is a #LINEITEM_REFERENCE onto
+   _Error. Fiori Elements renders that facet from the CHILD's own
+   @UI.lineItem - without this file the table appears on the object
+   page with no columns, and the ObjectPage_EInvoiceError the
+   generator creates has nothing on it either.
+
+   The HANA cockpit kept these messages in one concatenated string on
+   the header row, which is why only the first one was ever readable.
+   Here they are rows, numbered and dated.
+   ===================================================================== */
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'API Error',
+                     typeNamePlural: 'API Errors',
+                     title:          { type: #STANDARD, value: 'ErrorCode' },
+                     description:    { type: #STANDARD, value: 'ErrorMessage' } } }
+
+annotate entity ZCDS_CUN_EINV_DOC_ERR
+    with
+{
+  @UI.facet: [ { id:       'ErrorDetail',
+                 purpose:  #STANDARD,
+                 type:     #IDENTIFICATION_REFERENCE,
+                 label:    'API Error',
+                 position: 10 } ]
+
+  @UI: { lineItem:       [ { position: 10, label: 'No.', importance: #HIGH } ],
+         identification: [ { position: 10, label: 'Error Number' } ] }
+  ErrorNumber;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Date', importance: #MEDIUM } ],
+         identification: [ { position: 20, label: 'Error Date' } ] }
+  ErrorDate;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Time', importance: #LOW } ],
+         identification: [ { position: 30, label: 'Error Time' } ] }
+  ErrorTime;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Code', importance: #HIGH } ],
+         identification: [ { position: 40, label: 'Error Code' } ] }
+  ErrorCode;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Source', importance: #MEDIUM } ],
+         identification: [ { position: 50, label: 'Error Source' } ] }
+  ErrorSource;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Message', importance: #HIGH } ],
+         identification: [ { position: 60, label: 'Error Message' } ] }
+  ErrorMessage;
+}

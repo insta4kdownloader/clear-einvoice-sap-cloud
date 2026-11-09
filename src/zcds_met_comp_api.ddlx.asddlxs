@@ -1,0 +1,71 @@
+/* UI for the API Endpoint tab of ELT Config Details. Mirrors
+   ZCDS_MET_INS_CONFIG_DETAILS: one IDENTIFICATION_REFERENCE facet for the
+   row's own object page, and lineItem for the table on the parent's tab.
+   Section 89. */
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName:       'API Endpoint',
+                     typeNamePlural: 'API Endpoints',
+                     title: { type: #STANDARD, label: 'API Endpoint' } } }
+annotate entity ZCDS_CUN_COMP_API with
+{
+  @UI.facet: [ { id:              'APIFacet',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'API Endpoint',
+                 targetQualifier: 'API_Config_fields',
+                 position:        10 } ]
+
+  @UI: { lineItem:       [ { position: 10, qualifier: 'API_Config',
+                             label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'API_Config_fields',
+                             label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, qualifier: 'API_Config',
+                             label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'API_Config_fields',
+                             label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, qualifier: 'API_Config',
+                             label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'API_Config_fields',
+                             label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, qualifier: 'API_Config',
+                             label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'API_Config_fields',
+                             label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, qualifier: 'API_Config',
+                             label: 'Functionality' } ],
+         identification: [ { position: 50, qualifier: 'API_Config_fields',
+                             label: 'Functionality' } ] }
+  Functionality;
+
+  @UI: { lineItem:       [ { position: 60, qualifier: 'API_Config',
+                             label: 'Sequence' } ],
+         identification: [ { position: 60, qualifier: 'API_Config_fields',
+                             label: 'Sequence' } ] }
+  Sequence;
+
+  @UI: { lineItem:       [ { position: 70, qualifier: 'API_Config',
+                             label: 'URL' } ],
+         identification: [ { position: 70, qualifier: 'API_Config_fields',
+                             label: 'URL' } ] }
+  EndpointUrl;
+
+  @UI: { lineItem:       [ { position: 80, qualifier: 'API_Config',
+                             label: 'Parameter Name' } ],
+         identification: [ { position: 80, qualifier: 'API_Config_fields',
+                             label: 'Parameter Name' } ] }
+  ParameterName;
+
+  @UI: { lineItem:       [ { position: 90, qualifier: 'API_Config',
+                             label: 'Parameter Value' } ],
+         identification: [ { position: 90, qualifier: 'API_Config_fields',
+                             label: 'Parameter Value' } ] }
+  ParameterValue;
+}

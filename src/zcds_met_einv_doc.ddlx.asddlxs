@@ -1,0 +1,219 @@
+/* =====================================================================
+   UI for the Sales e-Invoice cockpit.
+
+   Replaces three pieces of SAP GUI customizing at once:
+
+     /CLR/EINV_FCAT    the ALV field catalogue that prepare_fieldcat
+                       read (FIELDNAME, COL_POS, SCRTEXT_M, OUTPUTLEN,
+                       NO_ZERO, KEYFIELD, ICON, EDIT, HOTSPOT, CHECKBOX)
+     /CLR/EINV_SELSCR  the per-country show/hide of selection fields
+                       that selection_screen_param applied with
+                       LOOP AT SCREEN / MODIFY SCREEN
+     /CLR/EINV_STATUS  the SYNC_ICON / COLOR_CODE columns feeding
+                       set_status_colors and the lvc_t_scol cell table
+
+   A Fiori Elements list report gets its columns, ordering, criticality
+   and selection fields from annotations, and end users adapt the rest
+   themselves - so three customizing tables and eleven ABAP methods
+   collapse into this file.
+   ===================================================================== */
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'e-Invoice',
+                     typeNamePlural: 'e-Invoices',
+                     title:          { type: #STANDARD, value: 'AccountingDocument' },
+                     description:    { type: #STANDARD, value: 'EffectiveStatus' } },
+       presentationVariant: [ { sortOrder: [ { by: 'CreatedOn', direction: #DESC } ],
+                                visualizations: [ { type: #AS_LINEITEM } ] } ] }
+
+annotate entity ZCDS_CUN_EINV_DOC
+    with
+{
+  @UI.facet: [ { id:              'DocumentFacet',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'e-Invoice',
+                 targetQualifier: 'DocumentFields',
+                 position:        10 },
+               { id:              'ExchangeFacet',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Exchange Status',
+                 targetElement:   '_Exchange',
+                 position:        20 },
+               { id:              'ErrorFacet',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'API Errors',
+                 targetElement:   '_Error',
+                 position:        30 },
+               /* The extract archive kept for the DATA_ZIP diagnostic.
+                  Present only when that config row is set, so on a normal
+                  system this tab is empty - which is the intended
+                  behaviour for a diagnostic, not a defect. */
+               /* The government reporting history from the Status API.
+                  Between Exchange Status and API Errors in meaning, and
+                  placed after both: it is the authority's account of the
+                  document, where _Exchange is the platform's. */
+               { id:              'PpfFacet',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Government Reporting',
+                 targetElement:   '_Ppf',
+                 position:        35 },
+               { id:              'ArchiveFacet',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Extract Archive',
+                 targetElement:   '_Archive',
+                 position:        40 } ]
+
+  @UI: { lineItem:       [ { position: 10, label: 'Accounting Doc.', importance: #HIGH },
+                           /* The HANA cockpit made VBELN and BELNR hotspots that did
+                              CALL TRANSACTION 'VF03' / 'FB03' AND SKIP FIRST SCREEN.
+                              In Fiori that is intent-based navigation, declared with
+                              @Consumption.semanticObject on the field in the
+                              consumption view - no code at all. */
+                           { type: #FOR_ACTION, dataAction: 'SubmitEInvoice',
+                             label: 'Submit e-Invoice', position: 100 },
+                           { type: #FOR_ACTION, dataAction: 'RefreshStatus',
+                             label: 'Refresh Status', position: 110 },
+                           { type: #FOR_ACTION, dataAction: 'RequestPrintout',
+                             label: 'Request Printout', position: 120 },
+                           { type: #FOR_ACTION, dataAction: 'SellerAction',
+                             label: 'Seller Action', position: 130 },
+                           { type: #FOR_ACTION, dataAction: 'CancelEInvoice',
+                             label: 'Cancel e-Invoice', position: 140 } ],
+         identification: [ { position: 10, qualifier: 'DocumentFields',
+                             label: 'Accounting Document' } ] }
+  AccountingDocument;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Billing Doc.', importance: #HIGH } ],
+         identification: [ { position: 20, qualifier: 'DocumentFields',
+                             label: 'Billing Document' } ] }
+  BillingDocument;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Company Code', importance: #MEDIUM } ],
+         identification: [ { position: 30, qualifier: 'DocumentFields',
+                             label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Fiscal Year', importance: #LOW } ],
+         identification: [ { position: 40, qualifier: 'DocumentFields',
+                             label: 'Fiscal Year' } ] }
+  FiscalYear;
+
+  /* Criticality replaces /CLR/EINV_STATUS-COLOR_CODE and SYNC_ICON.
+     The client renders the colour and the icon; nothing in ABAP has to
+     build an lvc_t_scol table per row any more. */
+  @UI: { lineItem:       [ { position: 50, label: 'Status',
+                             importance: #HIGH, criticality: 'StatusCriticality' } ],
+         identification: [ { position: 50, qualifier: 'DocumentFields',
+                             label: 'Status', criticality: 'StatusCriticality' } ] }
+  EffectiveStatus;
+
+  /* The HANA version showed the message only through a hotspot popup
+     (FORM f_einv_ewb_error_popup, with manual 85-character word wrap in
+     FORM display_error_popup). Here it is a normal column with a
+     multi-line quick view, and the individual API error rows are the
+     _Error child list on the object page. */
+  @UI: { lineItem:       [ { position: 60, label: 'Message', importance: #MEDIUM } ],
+         identification: [ { position: 60, qualifier: 'DocumentFields',
+                             label: 'Message' } ],
+         multiLineText: true }
+  EffectiveMessage;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Clear Document ID', importance: #MEDIUM } ],
+         identification: [ { position: 70, qualifier: 'DocumentFields',
+                             label: 'Clear Document ID' } ] }
+  ClearDocumentId;
+
+  @UI: { lineItem:       [ { position: 80, label: 'e-Invoice No.', importance: #MEDIUM } ],
+         identification: [ { position: 80, qualifier: 'DocumentFields',
+                             label: 'e-Invoice Number' } ] }
+  EInvoiceNumber;
+
+  @UI: { lineItem:       [ { position: 90, label: 'e-Invoice Date', importance: #LOW } ],
+         identification: [ { position: 90, qualifier: 'DocumentFields',
+                             label: 'e-Invoice Date' } ] }
+  EInvoiceDate;
+
+  @UI: { identification: [ { position: 100, qualifier: 'DocumentFields',
+                             label: 'Document Type Code' } ] }
+  DocumentTypeCode;
+
+  @UI: { identification: [ { position: 110, qualifier: 'DocumentFields',
+                             label: 'Invoice Type' } ] }
+  EInvoiceInvoiceType;
+
+  @UI: { identification: [ { position: 120, qualifier: 'DocumentFields',
+                             label: 'B2C' } ] }
+  IsB2C;
+
+  @UI: { identification: [ { position: 130, qualifier: 'DocumentFields',
+                             label: 'B2G' } ] }
+  IsB2G;
+
+  @UI: { identification: [ { position: 140, qualifier: 'DocumentFields',
+                             label: 'Sent' } ] }
+  IsSent;
+
+  /* The government stage on the header. The per-entry history is the
+     Government Reporting tab; these three are the latest entry, which is
+     what someone opening the document wants first. Section 81. */
+  @UI: { lineItem:       [ { position: 145, label: 'Govt Status',
+                             importance: #MEDIUM } ],
+         identification: [ { position: 142, qualifier: 'DocumentFields',
+                             label: 'Government Status' } ] }
+  GovernmentStatus;
+
+  @UI: { identification: [ { position: 144, qualifier: 'DocumentFields',
+                             label: 'PPF Status' } ] }
+  PpfStatus;
+
+  @UI: { identification: [ { position: 146, qualifier: 'DocumentFields',
+                             label: 'PPF Action' } ] }
+  PpfAction;
+
+  @UI: { identification: [ { position: 150, qualifier: 'DocumentFields',
+                             label: 'Command ID' } ] }
+  CommandId;
+
+  @UI: { lineItem:       [ { position: 160, label: 'Created On', importance: #LOW } ],
+         identification: [ { position: 160, qualifier: 'DocumentFields',
+                             label: 'Created On' } ] }
+  CreatedOn;
+
+  @UI: { identification: [ { position: 170, qualifier: 'DocumentFields',
+                             label: 'Created By' } ] }
+  CreatedBy;
+
+  @UI: { identification: [ { position: 180, qualifier: 'DocumentFields',
+                             label: 'Reversed' } ] }
+  IsReversed;
+
+  @UI: { identification: [ { position: 190, qualifier: 'DocumentFields',
+                             label: 'Reversal Document' } ] }
+  IsReversal;
+
+  @UI: { identification: [ { position: 200, qualifier: 'DocumentFields',
+                             label: 'Platform UUID' } ] }
+  PlatformUuid;
+
+  /* Large payloads: object page only, never the list report. */
+  @UI: { identification: [ { position: 210, qualifier: 'DocumentFields',
+                             label: 'Signed Invoice QR Code' } ],
+         multiLineText: true }
+  SignedQrCode;
+
+  @UI: { identification: [ { position: 220, qualifier: 'DocumentFields',
+                             label: 'Signed Invoice' } ],
+         multiLineText: true }
+  SignedInvoice;
+
+  @UI.hidden: true
+  StatusCriticality;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

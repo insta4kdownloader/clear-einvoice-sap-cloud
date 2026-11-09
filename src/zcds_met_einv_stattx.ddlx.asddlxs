@@ -1,0 +1,22 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName: 'Status Text',
+                     typeNamePlural: 'Status Texts',
+                     title: { type: #STANDARD, value: 'StatusCode' } } }
+annotate entity ZCDS_CUN_EINV_STATTX
+    with
+{
+  @UI.facet: [ { id: 'EINV_STATTX_FACET',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Status Text',
+                 targetQualifier: 'EINV_STATTX_FIELDS',
+                 position: 10 } ]
+  @UI: { lineItem:       [ { position: 10, label: 'Status Code' } ],
+         identification: [ { position: 10, qualifier: 'EINV_STATTX_FIELDS', label: 'Status Code' } ] }
+  StatusCode;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Status Text' } ],
+         identification: [ { position: 20, qualifier: 'EINV_STATTX_FIELDS', label: 'Status Text' } ] }
+  StatusText;
+
+}

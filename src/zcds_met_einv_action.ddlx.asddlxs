@@ -1,0 +1,26 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName: 'Action Type',
+                     typeNamePlural: 'Action Types',
+                     title: { type: #STANDARD, value: 'EInvoiceType' } } }
+annotate entity ZCDS_CUN_EINV_ACTION
+    with
+{
+  @UI.facet: [ { id: 'EINV_ACTION_FACET',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Action Type',
+                 targetQualifier: 'EINV_ACTION_FIELDS',
+                 position: 10 } ]
+  @UI: { lineItem:       [ { position: 10, label: 'e-Invoice Type' } ],
+         identification: [ { position: 10, qualifier: 'EINV_ACTION_FIELDS', label: 'e-Invoice Type' } ] }
+  EInvoiceType;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Action Type' } ],
+         identification: [ { position: 20, qualifier: 'EINV_ACTION_FIELDS', label: 'Action Type' } ] }
+  ActionType;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Description' } ],
+         identification: [ { position: 30, qualifier: 'EINV_ACTION_FIELDS', label: 'Description' } ] }
+  ActionDescription;
+
+}

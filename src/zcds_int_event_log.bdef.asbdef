@@ -1,0 +1,49 @@
+managed implementation in class zbp_cds_int_event_log unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EVENT_LOG
+persistent table ztevent_log
+lock master
+/* Both, not just instance: CREATE has no instance to authorize, so without
+   the global authorization the tenant reports "Operation create should be
+   equipped with (global) authorization". */
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  /* readonly : update, not plain readonly: the unconditional form blocks
+     the field on CREATE as well, and the key has to be supplied there. */
+  field ( readonly : update ) Pan, Company, Guid, EventCounter, Timestamp,
+                              EntryDate, EntryTime;
+
+  /* Without this block RAP matches element names to column names one for
+     one. Ten of the twenty-one elements are CamelCase over a snake_case
+     column (WorkflowId/workflow_id, DocCount/doc_count, ...) and three of
+     those are keys, so the behaviour definition did not activate at all. */
+  mapping for ztevent_log
+    {
+      Pan              = pan;
+      Company          = company;
+      Guid             = guid;
+      EventCounter     = event_counter;
+      Timestamp        = timestamp;
+      EntryDate        = entry_date;
+      EntryTime        = entry_time;
+      WorkflowId       = workflow_id;
+      Response         = response;
+      Category         = category;
+      Action           = action;
+      ErrorDescription = error_description;
+      DocCount         = doc_count;
+      Value            = value;
+      EventData        = event_data;
+      SentFlag         = sent_flag;
+      UserId           = user_id;
+      BackgroundFlag   = background_flag;
+      ProgramName      = program_name;
+      SendErrorCode    = send_error_code;
+      SendErrorReason  = send_error_reason;
+    }
+}

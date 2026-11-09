@@ -1,0 +1,85 @@
+@Metadata.layer: #CORE
+@UI:{ headerInfo: { typeName: 'ELT Config Details',
+                    typeNamePlural: 'ELT Config',
+                    title: { type: #STANDARD, label: 'ELT Config Details' }}}
+annotate entity ZCDS_CUN_COMP_DETAILS
+    with 
+{
+
+//
+  @UI.facet: [
+  
+      { id: 'Projectid1',
+         position: 10,
+        type: #IDENTIFICATION_REFERENCE,
+        targetQualifier: 'Company_Details' ,
+        label: 'Company Details'
+          },
+
+        { id: 'Projectid2',
+        position: 20,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'ELT_Config',
+        label: 'ELT Config',
+        targetElement: '_ELT_CONFIG_DETAILS' },
+
+        { id: 'Projectid3',
+        position: 30,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'INS_Config',
+        label: 'Instrumentation Config',
+        targetElement: '_INS_CONFIG_DETAILS' },
+
+        /* The three e-invoice customizing tables, section 89. Ordered
+           registration first, then endpoints: a company code has to be
+           registered for a country before an endpoint for it means
+           anything, and the VAT number sits between the two because both
+           the registration row and the API headers carry it. */
+        { id: 'Projectid4',
+        position: 40,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'CNTRY_Config',
+        label: 'Country Registration',
+        targetElement: '_CNTRY_DETAILS' },
+
+        { id: 'Projectid5',
+        position: 50,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'VAT_Config',
+        label: 'VAT Registration',
+        targetElement: '_VAT_DETAILS' },
+
+        { id: 'Projectid6',
+        position: 60,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'API_Config',
+        label: 'API Endpoints',
+        targetElement: '_API_DETAILS' },
+
+        /* Relevance Mapping and Document Types, section 90. After the
+           endpoints because they answer a later question: the first five
+           tabs say who we are and how to reach the platform, these two
+           say which SAP documents to send and what to call them. */
+        { id: 'Projectid7',
+        position: 70,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'INVMAP_Config',
+        label: 'Relevance Mapping',
+        targetElement: '_INVMAP_DETAILS' },
+
+        { id: 'Projectid8',
+        position: 80,
+        type: #LINEITEM_REFERENCE,
+        targetQualifier: 'DOCTYP_Config',
+        label: 'Document Types',
+        targetElement: '_DOCTYP_DETAILS' } ]
+        
+        
+      @UI: { lineItem: [{ position: 10,label: 'Projectid' },
+      { type: #FOR_ACTION, dataAction: 'ping', label: 'Ping Test', position: 10}],
+           identification: [{ position: 10, qualifier: 'Company_Details', value: 'Projectid' }] }
+  Projectid;
+  @UI: { lineItem: [{ position: 20,label: 'Project Decription' }],
+  identification: [{ position: 20, qualifier: 'Company_Details', value: 'Compname',label: 'Project Decription' }] }
+  Compname;
+  }    

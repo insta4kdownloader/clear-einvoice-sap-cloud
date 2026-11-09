@@ -1,0 +1,35 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Note',
+                     typeNamePlural: 'Notes' } }
+
+annotate entity ZCDS_CUN_EDOC_APN
+    with
+{
+  @UI.facet: [ { id: 'NoteDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'Note',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Invoice line ID (BT-126); blank = docume', importance: #HIGH }],
+         identification: [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume' } ] }
+  LineId;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Sequence number', importance: #HIGH }],
+         identification: [ { position: 30, label: 'Sequence number' } ] }
+  Sequence;
+
+  @UI: { identification: [ { position: 40, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Invoice note subject code (BT-21)', importance: #HIGH }],
+         identification: [ { position: 50, label: 'Invoice note subject code (BT-21)' } ] }
+  SubjectCode;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Invoice note (BT-22 / BT-127)', importance: #HIGH }],
+         identification: [ { position: 60, label: 'Invoice note (BT-22 / BT-127)' } ] }
+  NoteText;
+
+}

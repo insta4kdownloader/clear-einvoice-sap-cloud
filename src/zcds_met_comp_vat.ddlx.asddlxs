@@ -1,0 +1,53 @@
+/* UI for the VAT Registration tab of ELT Config Details. Mirrors
+   ZCDS_MET_INS_CONFIG_DETAILS: one IDENTIFICATION_REFERENCE facet for the
+   row's own object page, and lineItem for the table on the parent's tab.
+   Section 89. */
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName:       'VAT Registration',
+                     typeNamePlural: 'VAT Registrations',
+                     title: { type: #STANDARD, label: 'VAT Registration' } } }
+annotate entity ZCDS_CUN_COMP_VAT with
+{
+  @UI.facet: [ { id:              'VATFacet',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'VAT Registration',
+                 targetQualifier: 'VAT_Config_fields',
+                 position:        10 } ]
+
+  @UI: { lineItem:       [ { position: 10, qualifier: 'VAT_Config',
+                             label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'VAT_Config_fields',
+                             label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, qualifier: 'VAT_Config',
+                             label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'VAT_Config_fields',
+                             label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, qualifier: 'VAT_Config',
+                             label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'VAT_Config_fields',
+                             label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, qualifier: 'VAT_Config',
+                             label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'VAT_Config_fields',
+                             label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, qualifier: 'VAT_Config',
+                             label: 'Sequence' } ],
+         identification: [ { position: 50, qualifier: 'VAT_Config_fields',
+                             label: 'Sequence' } ] }
+  Sequence;
+
+  @UI: { lineItem:       [ { position: 60, qualifier: 'VAT_Config',
+                             label: 'VAT Number' } ],
+         identification: [ { position: 60, qualifier: 'VAT_Config_fields',
+                             label: 'VAT Number' } ] }
+  VatRegistrationNumber;
+}

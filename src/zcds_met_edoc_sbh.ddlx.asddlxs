@@ -1,0 +1,323 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Self-Billed e-Invoice',
+                     typeNamePlural: 'Self-Billed e-Invoices',
+                     title:          { type: #STANDARD, value: 'DocumentNumber' },
+                     description:    { type: #STANDARD, value: 'SellerName' } } }
+
+annotate entity ZCDS_CUN_EDOC_SBH
+    with
+{
+  @UI.facet: [ { id: 'DocumentFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Document',
+                targetQualifier: 'Document', position: 10 },
+               { id: 'StandardFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Standard',
+                targetQualifier: 'Standard', position: 20 },
+               { id: 'CurrencyFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Currency',
+                targetQualifier: 'Currency', position: 30 },
+               { id: 'TotalsFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Totals',
+                targetQualifier: 'Totals', position: 40 },
+               { id: 'DeliveryFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Delivery',
+                targetQualifier: 'Delivery', position: 50 },
+               { id: 'PaymentFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Payment',
+                targetQualifier: 'Payment', position: 60 },
+               { id: 'PaymentTermsFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'PaymentTerms',
+                targetQualifier: 'PaymentTerms', position: 70 },
+               { id: 'PrepaidFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Prepaid',
+                targetQualifier: 'Prepaid', position: 80 },
+               { id: 'AdminFacet', purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE, label: 'Admin',
+                targetQualifier: 'Admin', position: 90 },
+               { id: 'LineFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'Lines',
+                targetElement: '_Line', position: 100 },
+               { id: 'PartyFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'Parties',
+                targetElement: '_Party', position: 110 },
+               { id: 'TaxSubtotalFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'VAT breakdown',
+                targetElement: '_TaxSubtotal', position: 120 },
+               { id: 'AllowanceFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'Allowances and charges',
+                targetElement: '_Allowance', position: 130 },
+               { id: 'NoteFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'Notes',
+                targetElement: '_Note', position: 140 },
+               { id: 'ReferenceFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'References',
+                targetElement: '_Reference', position: 150 },
+               { id: 'ItemAttributeFacet', purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE, label: 'Item attributes',
+                targetElement: '_ItemAttr', position: 160 } ]
+
+  @UI: { identification: [ { position: 10, qualifier: 'Document', label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Invoice number (BT-1)', importance: #HIGH } ],
+         identification: [ { position: 20, qualifier: 'Document', label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Document', label: 'Clear document ID' } ] }
+  DocumentId;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Processing status', importance: #HIGH, criticality: 'StatusCriticality' } ],
+         identification: [ { position: 40, qualifier: 'Document', label: 'Processing status' } ] }
+  Status;
+
+  @UI: { lineItem:       [ { position: 90, label: 'Action type', importance: #HIGH } ],
+         identification: [ { position: 50, qualifier: 'Document', label: 'Action type' } ] }
+  ActionType;
+
+  @UI: { lineItem:       [ { position: 100, label: 'Action reason code', importance: #HIGH } ],
+         identification: [ { position: 60, qualifier: 'Document', label: 'Action reason code' } ] }
+  ReasonCode;
+
+  @UI: { lineItem:       [ { position: 80, label: 'PO / GR match status', importance: #HIGH } ],
+         identification: [ { position: 70, qualifier: 'Document', label: 'PO / GR match status' } ] }
+  MatchStatus;
+
+  @UI: { identification: [ { position: 80, qualifier: 'Document', label: 'Comment' } ] }
+  CommentText;
+
+  @UI: { lineItem:       [ { position: 110, label: 'API message', importance: #HIGH } ],
+         identification: [ { position: 90, qualifier: 'Document', label: 'API message' } ] }
+  ApiMessage;
+
+  @UI: { identification: [ { position: 10, qualifier: 'Standard', label: 'UBL version ID' } ] }
+  UblVersionId;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Standard', label: 'Specification identifier (BT-24)' } ] }
+  CustomizationId;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Standard', label: 'Business process type (BT-23)' } ] }
+  ProfileId;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Standard', label: 'SBDH document type identifier' } ] }
+  SbdhDocumentTypeId;
+
+  @UI: { identification: [ { position: 50, qualifier: 'Standard', label: 'SBDH process identifier' } ] }
+  SbdhProcessId;
+
+  @UI: { identification: [ { position: 60, qualifier: 'Standard', label: 'Country C1 (SBDH)' } ] }
+  SbdhCountry;
+
+  @UI: { identification: [ { position: 70, qualifier: 'Standard', label: 'SBDH sender identifier' } ] }
+  SbdhSenderId;
+
+  @UI: { identification: [ { position: 80, qualifier: 'Standard', label: 'SBDH receiver identifier' } ] }
+  SbdhReceiverId;
+
+  @UI: { identification: [ { position: 90, qualifier: 'Standard', label: 'SBDH creation timestamp (UTC)' } ] }
+  SbdhCreatedTimestamp;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Invoice issue date (BT-2)', importance: #HIGH } ],
+         identification: [ { position: 100, qualifier: 'Document', label: 'Invoice issue date (BT-2)' } ] }
+  IssueDate;
+
+  @UI: { identification: [ { position: 110, qualifier: 'Document', label: 'Invoice issue time' } ] }
+  IssueTime;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Payment due date (BT-9)', importance: #HIGH } ],
+         identification: [ { position: 120, qualifier: 'Document', label: 'Payment due date (BT-9)' } ] }
+  DueDate;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Invoice type code (BT-3)', importance: #HIGH } ],
+         identification: [ { position: 130, qualifier: 'Document', label: 'Invoice type code (BT-3)' } ] }
+  InvoiceTypeCode;
+
+  @UI: { identification: [ { position: 140, qualifier: 'Document', label: 'Invoice type name' } ] }
+  InvoiceTypeName;
+
+  @UI: { identification: [ { position: 150, qualifier: 'Document', label: 'VAT point date (BT-7)' } ] }
+  TaxPointDate;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Invoice currency (BT-5)', importance: #HIGH } ],
+         identification: [ { position: 10, qualifier: 'Currency', label: 'Invoice currency (BT-5)' } ] }
+  Currency;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Currency', label: 'VAT accounting currency (BT-6)' } ] }
+  TaxCurrency;
+
+  @UI: { identification: [ { position: 160, qualifier: 'Document', label: 'Buyer accounting reference (BT-19)' } ] }
+  AccountingCost;
+
+  @UI: { identification: [ { position: 170, qualifier: 'Document', label: 'Buyer reference (BT-10)' } ] }
+  BuyerReference;
+
+  @UI: { identification: [ { position: 180, qualifier: 'Document', label: 'Invoicing period start date' } ] }
+  PeriodStart;
+
+  @UI: { identification: [ { position: 190, qualifier: 'Document', label: 'Invoicing period end date' } ] }
+  PeriodEnd;
+
+  @UI: { identification: [ { position: 200, qualifier: 'Document', label: 'Invoicing period description code' } ] }
+  PeriodDescriptionCode;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Currency', label: 'Exchange rate source currency' } ] }
+  TaxExchangeSourceCurrency;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Currency', label: 'Exchange rate target currency' } ] }
+  TaxExchangeTargetCurrency;
+
+  @UI: { identification: [ { position: 50, qualifier: 'Currency', label: 'Tax exchange rate' } ] }
+  TaxExchangeRate;
+
+  @UI: { identification: [ { position: 60, qualifier: 'Currency', label: 'Tax exchange rate date' } ] }
+  TaxExchangeDate;
+
+  @UI: { identification: [ { position: 10, qualifier: 'Totals', label: 'Sum of invoice line net amounts (BT-106)' } ] }
+  LineExtensionAmount;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Totals', label: 'Sum of document allowances (BT-107)' } ] }
+  AllowanceTotal;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Totals', label: 'Sum of document charges (BT-108)' } ] }
+  ChargeTotal;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Totals', label: 'Invoice total without VAT (BT-109)' } ] }
+  TaxExclusiveAmount;
+
+  @UI: { identification: [ { position: 50, qualifier: 'Totals', label: 'Invoice total VAT amount (BT-110)' } ] }
+  VatTotal;
+
+  @UI: { identification: [ { position: 60, qualifier: 'Totals', label: 'Invoice total with VAT (BT-112)' } ] }
+  TaxInclusiveAmount;
+
+  @UI: { identification: [ { position: 70, qualifier: 'Totals', label: 'Paid amount (BT-113)' } ] }
+  PrepaidAmount;
+
+  @UI: { identification: [ { position: 80, qualifier: 'Totals', label: 'Rounding amount (BT-114)' } ] }
+  PayableRoundingAmount;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Amount due for payment (BT-115)', importance: #HIGH } ],
+         identification: [ { position: 90, qualifier: 'Totals', label: 'Amount due for payment (BT-115)' } ] }
+  PayableAmount;
+
+  @UI: { identification: [ { position: 100, qualifier: 'Totals', label: 'Invoice total VAT in accounting currency' } ] }
+  VatTotalTaxCurrency;
+
+  @UI: { identification: [ { position: 10, qualifier: 'Delivery', label: 'Actual delivery date (BT-72)' } ] }
+  ActualDeliveryDate;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Delivery', label: 'Deliver-to location identifier (BT-71)' } ] }
+  DeliveryLocationId;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Delivery', label: 'Deliver-to location identifier scheme' } ] }
+  DeliveryLocationIdScheme;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Delivery', label: 'Delivery terms (Incoterms)' } ] }
+  DeliveryTermsId;
+
+  @UI: { identification: [ { position: 10, qualifier: 'Payment', label: 'Payment means type code (BT-81)' } ] }
+  PaymentMeansCode;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Payment', label: 'Payment means text (BT-82)' } ] }
+  PaymentMeansName;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Payment', label: 'Payment means ID' } ] }
+  PaymentMeansId;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Payment', label: 'Payment instruction note' } ] }
+  PaymentInstructionNote;
+
+  @UI: { identification: [ { position: 50, qualifier: 'Payment', label: 'Remittance information (BT-83)' } ] }
+  PaymentId;
+
+  @UI: { identification: [ { position: 60, qualifier: 'Payment', label: 'Payment account identifier / IBAN (BT-84' } ] }
+  PayeeAccountId;
+
+  @UI: { identification: [ { position: 70, qualifier: 'Payment', label: 'Payment account identifier scheme' } ] }
+  PayeeAccountScheme;
+
+  @UI: { identification: [ { position: 80, qualifier: 'Payment', label: 'Payment account name (BT-85)' } ] }
+  PayeeAccountName;
+
+  @UI: { identification: [ { position: 90, qualifier: 'Payment', label: 'Payment service provider ID / BIC (BT-86' } ] }
+  PayeeBranchId;
+
+  @UI: { identification: [ { position: 100, qualifier: 'Payment', label: 'Payment card primary account number, mas' } ] }
+  CardAccountId;
+
+  @UI: { identification: [ { position: 110, qualifier: 'Payment', label: 'Payment card network ID' } ] }
+  CardNetwork;
+
+  @UI: { identification: [ { position: 120, qualifier: 'Payment', label: 'Payment card holder name (BT-88)' } ] }
+  CardHolder;
+
+  @UI: { identification: [ { position: 130, qualifier: 'Payment', label: 'Direct debit mandate reference (BT-89)' } ] }
+  MandateId;
+
+  @UI: { identification: [ { position: 140, qualifier: 'Payment', label: 'Debited account identifier (BT-91)' } ] }
+  PayerAccountId;
+
+  @UI: { identification: [ { position: 10, qualifier: 'PaymentTerms', label: 'Payment terms ID' } ] }
+  PaymentTermsId;
+
+  @UI: { identification: [ { position: 20, qualifier: 'PaymentTerms', label: 'Payment terms (BT-20)' } ] }
+  PaymentTermsNote;
+
+  @UI: { identification: [ { position: 30, qualifier: 'PaymentTerms', label: 'Payment terms amount' } ] }
+  PaymentTermsAmount;
+
+  @UI: { identification: [ { position: 40, qualifier: 'PaymentTerms', label: 'Payment terms amount currency' } ] }
+  PaymentTermsCurrency;
+
+  @UI: { identification: [ { position: 50, qualifier: 'PaymentTerms', label: 'Payment terms installment due date' } ] }
+  PaymentTermsDueDate;
+
+  @UI: { identification: [ { position: 10, qualifier: 'Prepaid', label: 'Prepaid payment ID' } ] }
+  PrepaidId;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Prepaid', label: 'Prepaid payment amount' } ] }
+  PrepaidPaidAmount;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Prepaid', label: 'Prepaid payment currency' } ] }
+  PrepaidCurrency;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Prepaid', label: 'Prepaid payment received date' } ] }
+  PrepaidReceivedDate;
+
+  @UI: { identification: [ { position: 50, qualifier: 'Prepaid', label: 'Prepaid payment instruction ID' } ] }
+  PrepaidInstructionId;
+
+  @UI: { identification: [ { position: 210, qualifier: 'Document', label: 'Number of invoice lines' } ] }
+  LineCount;
+
+  @UI: { identification: [ { position: 10, qualifier: 'Admin', label: 'Raw JSON payload' } ] }
+  JsonPayload;
+
+  @UI: { identification: [ { position: 20, qualifier: 'Admin', label: 'Created on' } ] }
+  CreatedOn;
+
+  @UI: { identification: [ { position: 30, qualifier: 'Admin', label: 'Created at' } ] }
+  CreatedAt;
+
+  @UI: { identification: [ { position: 40, qualifier: 'Admin', label: 'Created by' } ] }
+  CreatedBy;
+
+  @UI: { identification: [ { position: 50, qualifier: 'Admin', label: 'Changed on' } ] }
+  ChangedOn;
+
+  @UI: { identification: [ { position: 60, qualifier: 'Admin', label: 'Changed at' } ] }
+  ChangedAt;
+
+  @UI: { identification: [ { position: 70, qualifier: 'Admin', label: 'Changed by' } ] }
+  ChangedBy;
+
+  @UI: { lineItem: [ { position: 5, label: 'Seller', importance: #HIGH } ] }
+  SellerName;
+
+  @UI: { lineItem: [ { position: 6, label: 'Buyer', importance: #MEDIUM } ] }
+  BuyerName;
+
+  @UI.hidden: true
+  StatusCriticality;
+
+}

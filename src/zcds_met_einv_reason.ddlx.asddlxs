@@ -1,0 +1,26 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName: 'Reason Code',
+                     typeNamePlural: 'Reason Codes',
+                     title: { type: #STANDARD, value: 'ActionType' } } }
+annotate entity ZCDS_CUN_EINV_REASON
+    with
+{
+  @UI.facet: [ { id: 'EINV_REASON_FACET',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Reason Code',
+                 targetQualifier: 'EINV_REASON_FIELDS',
+                 position: 10 } ]
+  @UI: { lineItem:       [ { position: 10, label: 'Action Type' } ],
+         identification: [ { position: 10, qualifier: 'EINV_REASON_FIELDS', label: 'Action Type' } ] }
+  ActionType;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Reason Code' } ],
+         identification: [ { position: 20, qualifier: 'EINV_REASON_FIELDS', label: 'Reason Code' } ] }
+  ReasonCode;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Reason Text' } ],
+         identification: [ { position: 30, qualifier: 'EINV_REASON_FIELDS', label: 'Reason Text' } ] }
+  ReasonText;
+
+}

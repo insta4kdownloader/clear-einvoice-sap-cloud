@@ -1,0 +1,42 @@
+@Metadata.layer: #CORE
+@UI: { headerInfo: { typeName: 'Document Type',
+                     typeNamePlural: 'Document Types',
+                     title: { type: #STANDARD, value: 'ProjectId' } } }
+annotate entity ZCDS_CUN_EINV_DOCTYP
+    with
+{
+  @UI.facet: [ { id: 'EINV_DOCTYP_FACET',
+                 purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE,
+                 label: 'Document Type',
+                 targetQualifier: 'EINV_DOCTYP_FIELDS',
+                 position: 10 } ]
+  @UI: { lineItem:       [ { position: 10, label: 'Project ID' } ],
+         identification: [ { position: 10, qualifier: 'EINV_DOCTYP_FIELDS', label: 'Project ID' } ] }
+  ProjectId;
+
+  @UI: { lineItem:       [ { position: 20, label: 'System ID' } ],
+         identification: [ { position: 20, qualifier: 'EINV_DOCTYP_FIELDS', label: 'System ID' } ] }
+  SystemId;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Country' } ],
+         identification: [ { position: 30, qualifier: 'EINV_DOCTYP_FIELDS', label: 'Country' } ] }
+  Country;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Company Code' } ],
+         identification: [ { position: 40, qualifier: 'EINV_DOCTYP_FIELDS', label: 'Company Code' } ] }
+  CompanyCode;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Transaction Type' } ],
+         identification: [ { position: 50, qualifier: 'EINV_DOCTYP_FIELDS', label: 'Transaction Type' } ] }
+  TransactionType;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Document Type Code' } ],
+         identification: [ { position: 60, qualifier: 'EINV_DOCTYP_FIELDS', label: 'Document Type Code' } ] }
+  DocumentTypeCode;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Description' } ],
+         identification: [ { position: 70, qualifier: 'EINV_DOCTYP_FIELDS', label: 'Description' } ] }
+  DocumentTypeDescription;
+
+}

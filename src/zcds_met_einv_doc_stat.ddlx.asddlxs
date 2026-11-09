@@ -1,0 +1,79 @@
+/* =====================================================================
+   UI for the exchange-status rows of the Sales e-Invoice cockpit.
+
+   The ExchangeFacet of ZCDS_MET_EINV_DOC is a #LINEITEM_REFERENCE onto
+   _Exchange, and Fiori Elements renders it from this entity's own
+   @UI.lineItem. Without this file the Exchange Status table on the
+   object page has no columns.
+
+   The columns are the pipeline the platform reports: PA exchange,
+   invoice submission, lifecycle submission, rejection, refusal and
+   payment. The HANA cockpit showed none of this - it had one STATUS
+   column on the header and the detail was only in the API response.
+   ===================================================================== */
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Exchange Status',
+                     typeNamePlural: 'Exchange Status',
+                     title:          { type: #STANDARD, value: 'ClearDocumentId' },
+                     description:    { type: #STANDARD, value: 'PaExchangeStatus' } } }
+
+annotate entity ZCDS_CUN_EINV_DOC_STAT
+    with
+{
+  @UI.facet: [ { id:       'ExchangeDetail',
+                 purpose:  #STANDARD,
+                 type:     #IDENTIFICATION_REFERENCE,
+                 label:    'Exchange Status',
+                 position: 10 } ]
+
+  @UI: { lineItem:       [ { position: 10, label: 'Document ID', importance: #HIGH } ],
+         identification: [ { position: 10, label: 'Clear Document ID' } ] }
+  ClearDocumentId;
+
+  @UI: { lineItem:       [ { position: 20, label: 'PA Exchange', importance: #HIGH } ],
+         identification: [ { position: 20, label: 'PA Exchange Status' } ] }
+  PaExchangeStatus;
+
+  @UI: { lineItem:       [ { position: 30, label: 'PA Message', importance: #MEDIUM } ],
+         identification: [ { position: 30, label: 'PA Exchange Response Message' } ] }
+  PaExchangeResponseMessage;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Invoice Submission', importance: #HIGH } ],
+         identification: [ { position: 40, label: 'Invoice Submission Status' } ] }
+  PpfInvSubStatus;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Lifecycle Submission', importance: #MEDIUM } ],
+         identification: [ { position: 50, label: 'Lifecycle Submission Status' } ] }
+  PpfLcSubStatus;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Rejection', importance: #MEDIUM } ],
+         identification: [ { position: 60, label: 'Lifecycle Rejection Status' } ] }
+  PpfLcRejStatus;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Refusal', importance: #LOW } ],
+         identification: [ { position: 70, label: 'Lifecycle Refusal Status' } ] }
+  PpfLcRefStatus;
+
+  @UI: { lineItem:       [ { position: 80, label: 'Payment', importance: #MEDIUM } ],
+         identification: [ { position: 80, label: 'Payment Status' } ] }
+  PpfPaymentStatus;
+
+  @UI: { identification: [ { position: 90,  label: 'Invoice Submission Response Code' } ] }
+  PpfInvSubResponseCode;
+
+  @UI: { identification: [ { position: 100, label: 'Invoice Submission Message' } ] }
+  PpfInvSubResponseMessage;
+
+  @UI: { identification: [ { position: 110, label: 'Lifecycle Submission Message' } ] }
+  PpfLcSubResponseMessage;
+
+  @UI: { identification: [ { position: 120, label: 'Rejection Message' } ] }
+  PpfLcRejResponseMessage;
+
+  @UI: { identification: [ { position: 130, label: 'Refusal Message' } ] }
+  PpfLcRefResponseMessage;
+
+  @UI: { identification: [ { position: 140, label: 'Payment Message' } ] }
+  PpfPaymentResponseMessage;
+}

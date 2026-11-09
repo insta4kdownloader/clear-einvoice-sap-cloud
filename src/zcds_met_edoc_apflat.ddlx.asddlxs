@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Inbound e-Invoice Line',
+                     typeNamePlural: 'Inbound e-Invoice Lines' } }
+
+annotate entity ZCDS_CUN_EDOC_APFLAT
+    with
+{
+  @UI.lineItem: [ { position: 10, importance: #HIGH } ]
+  @UI.selectionField: [ { position: 10 } ]
+  DocumentNumber;
+
+  @UI.lineItem: [ { position: 20, importance: #HIGH } ]
+  LineId;
+
+  @UI.lineItem: [ { position: 30, importance: #HIGH } ]
+  @UI.selectionField: [ { position: 20 } ]
+  IssueDate;
+
+  @UI.lineItem: [ { position: 40, importance: #HIGH } ]
+  @UI.selectionField: [ { position: 30 } ]
+  SellerName;
+
+  @UI.lineItem: [ { position: 50, importance: #HIGH } ]
+  @UI.selectionField: [ { position: 40 } ]
+  BuyerName;
+
+  @UI.lineItem: [ { position: 60, importance: #HIGH } ]
+  ItemName;
+
+  @UI.lineItem: [ { position: 70, importance: #HIGH } ]
+  Quantity;
+
+  @UI.lineItem: [ { position: 80, importance: #HIGH } ]
+  UnitIso;
+
+  @UI.lineItem: [ { position: 90, importance: #HIGH } ]
+  PriceAmount;
+
+  @UI.lineItem: [ { position: 100, importance: #HIGH } ]
+  LineNetAmount;
+
+  @UI.lineItem: [ { position: 110, importance: #HIGH } ]
+  LineTaxAmount;
+
+  @UI.lineItem: [ { position: 120, importance: #HIGH } ]
+  PayableAmount;
+
+  @UI.lineItem: [ { position: 130, importance: #HIGH } ]
+  Currency;
+
+  @UI.lineItem: [ { position: 140, importance: #HIGH } ]
+  @UI.selectionField: [ { position: 50 } ]
+  Status;
+
+}

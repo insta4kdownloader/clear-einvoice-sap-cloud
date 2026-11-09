@@ -1,0 +1,40 @@
+@Metadata.layer: #CORE
+@UI:{ headerInfo: { typeName: 'ELT Config Details',
+                    typeNamePlural: 'ELT Config',
+                    title: { type: #STANDARD, label: 'ELT Config Details' }}}
+annotate entity ZCDS_CUN_ELT_CONFIG
+    with 
+{     
+@UI.facet: [{ id: 'Projectid2',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                label: 'ELT Config',
+                targetQualifier: 'ELT_Config_Fields',
+                position: 01 }]
+     @UI: { lineItem: [{ position: 10,qualifier: 'ELT_Config',label: 'Project ID' }],
+         identification: [{ position: 10, qualifier: 'ELT_Config_Fields',
+                    label: 'Project ID' }] }                        
+  Projectid;
+         @UI: { lineItem: [{ position: 20,qualifier: 'ELT_Config',label: 'System ID' }],
+         identification: [{ position: 20, qualifier: 'ELT_Config_Fields',value: 'Sysid',
+          label: 'System ID' }] } 
+  Sysid;
+         @UI: { lineItem: [{ position: 30,qualifier: 'ELT_Config',label: 'Label' }],
+         identification: [{ position: 30, qualifier: 'ELT_Config_Fields',value: 'Labeltype',
+          label: 'Label' }] } 
+                    
+  Labeltype;
+       @UI: { lineItem: [{ position: 40,qualifier: 'ELT_Config',label: 'Sequence' }],
+         identification: [{ position: 40, qualifier: 'ELT_Config_Fields',value: 'Sequence',
+          label: 'Sequence' }] } 
+  Sequence;
+       @UI: { lineItem: [{ position: 50,qualifier: 'ELT_Config',label: 'Low' }],
+         identification: [{ position: 50, qualifier: 'ELT_Config_Fields',value: 'Low',
+          label: 'Low' }] } 
+  Low;
+       @UI: { lineItem: [{ position: 60,qualifier: 'ELT_Config',label: 'High' }],
+         identification: [{ position: 60, qualifier: 'ELT_Config_Fields',value: 'High',
+          label: 'High' }] } 
+  High;
+
+  }             

@@ -1,0 +1,52 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'VAT breakdown',
+                     typeNamePlural: 'VAT breakdown' } }
+
+annotate entity ZCDS_CUN_EDOC_APT
+    with
+{
+  @UI.facet: [ { id: 'TaxSubtotalDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'VAT breakdown',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { identification: [ { position: 20, label: 'Sequence number' } ] }
+  Sequence;
+
+  @UI: { identification: [ { position: 30, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { lineItem:       [ { position: 40, label: 'VAT category taxable amount (BT-116)', importance: #HIGH }],
+         identification: [ { position: 40, label: 'VAT category taxable amount (BT-116)' } ] }
+  TaxableAmount;
+
+  @UI: { lineItem:       [ { position: 50, label: 'VAT category tax amount (BT-117)', importance: #HIGH }],
+         identification: [ { position: 50, label: 'VAT category tax amount (BT-117)' } ] }
+  TaxAmount;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Currency', importance: #HIGH }],
+         identification: [ { position: 60, label: 'Currency' } ] }
+  Currency;
+
+  @UI: { lineItem:       [ { position: 20, label: 'VAT category code', importance: #HIGH }],
+         identification: [ { position: 70, label: 'VAT category code' } ] }
+  TaxCategory;
+
+  @UI: { lineItem:       [ { position: 30, label: 'VAT rate', importance: #HIGH }],
+         identification: [ { position: 80, label: 'VAT rate' } ] }
+  TaxPercent;
+
+  @UI: { identification: [ { position: 90, label: 'Tax scheme ID' } ] }
+  TaxScheme;
+
+  @UI: { identification: [ { position: 100, label: 'VAT exemption reason code' } ] }
+  TaxExemptionReasonCode;
+
+  @UI: { lineItem:       [ { position: 70, label: 'VAT exemption reason text', importance: #HIGH }],
+         identification: [ { position: 110, label: 'VAT exemption reason text' } ] }
+  TaxExemptionReason;
+
+}

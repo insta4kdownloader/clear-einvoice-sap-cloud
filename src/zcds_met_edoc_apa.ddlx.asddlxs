@@ -1,0 +1,69 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Allowance / charge',
+                     typeNamePlural: 'Allowances and charges' } }
+
+annotate entity ZCDS_CUN_EDOC_APA
+    with
+{
+  @UI.facet: [ { id: 'AllowanceDetail', purpose: #STANDARD,
+                 type: #IDENTIFICATION_REFERENCE, label: 'Allowance / charge',
+                 position: 10 } ]
+
+  @UI: { identification: [ { position: 10, label: 'E-Invoice unique document ID (Clear/SBDH' } ] }
+  Uuid;
+
+  @UI: { lineItem:       [ { position: 10, label: 'Invoice line ID (BT-126); blank = docume', importance: #HIGH }],
+         identification: [ { position: 20, label: 'Invoice line ID (BT-126); blank = docume' } ] }
+  LineId;
+
+  @UI: { lineItem:       [ { position: 20, label: 'Sequence number', importance: #HIGH }],
+         identification: [ { position: 30, label: 'Sequence number' } ] }
+  Sequence;
+
+  @UI: { identification: [ { position: 40, label: 'Invoice number (BT-1)' } ] }
+  DocumentNumber;
+
+  @UI: { lineItem:       [ { position: 30, label: 'Charge indicator (true = charge, false =', importance: #HIGH }],
+         identification: [ { position: 50, label: 'Charge indicator (true = charge, false =' } ] }
+  ChargeIndicator;
+
+  @UI: { lineItem:       [ { position: 40, label: 'Allowance / charge reason code', importance: #HIGH }],
+         identification: [ { position: 60, label: 'Allowance / charge reason code' } ] }
+  AllowanceChargeReasonCode;
+
+  @UI: { lineItem:       [ { position: 50, label: 'Allowance / charge reason', importance: #HIGH }],
+         identification: [ { position: 70, label: 'Allowance / charge reason' } ] }
+  AllowanceChargeReasonText;
+
+  @UI: { identification: [ { position: 80, label: 'Allowance / charge percentage (BT-94/101' } ] }
+  Multiplier;
+
+  @UI: { lineItem:       [ { position: 60, label: 'Allowance / charge amount', importance: #HIGH }],
+         identification: [ { position: 90, label: 'Allowance / charge amount' } ] }
+  Amount;
+
+  @UI: { identification: [ { position: 100, label: 'Allowance / charge base amount' } ] }
+  BaseAmount;
+
+  @UI: { lineItem:       [ { position: 70, label: 'Currency', importance: #HIGH }],
+         identification: [ { position: 110, label: 'Currency' } ] }
+  Currency;
+
+  @UI: { identification: [ { position: 120, label: 'VAT category code' } ] }
+  TaxCategory;
+
+  @UI: { lineItem:       [ { position: 80, label: 'VAT rate', importance: #HIGH }],
+         identification: [ { position: 130, label: 'VAT rate' } ] }
+  TaxPercent;
+
+  @UI: { identification: [ { position: 140, label: 'Tax scheme ID' } ] }
+  TaxScheme;
+
+  @UI: { identification: [ { position: 150, label: 'VAT exemption reason code' } ] }
+  TaxExemptionReasonCode;
+
+  @UI: { identification: [ { position: 160, label: 'VAT exemption reason text' } ] }
+  TaxExemptionReason;
+
+}
