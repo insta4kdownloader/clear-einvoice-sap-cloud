@@ -1,0 +1,221 @@
+managed implementation in class zbp_cds_cun_comp_details unique;
+strict ( 2 );
+
+define behavior for ZCDS_CUN_COMP_DETAILS
+persistent table ztcomp_details
+lock master
+/* Global as well as instance: CREATE and the static action ping have no
+   instance to authorize. */
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  static action ( authorization : global, features : global ) ping;
+
+  /* Projectid is the key. readonly : update, not the unconditional form,
+     which would block it on create too. */
+  field ( readonly : update ) Projectid;
+
+  association _ELT_CONFIG_DETAILS { create; }
+  association _INS_CONFIG_DETAILS { create; }
+  association _CNTRY_DETAILS { create; }
+  association _VAT_DETAILS   { create; }
+  association _API_DETAILS   { create; }
+  association _INVMAP_DETAILS { create; }
+  association _DOCTYP_DETAILS { create; }
+}
+
+define behavior for ZCDS_CUN_ELT_CONFIG
+persistent table ztelt_config
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) Projectid, Sysid, Labeltype, Sequence;
+
+  association _COMPANY_DETAILS;
+}
+
+define behavior for ZCDS_CUN_INS_CONFIG
+persistent table ztins_config
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) Projectid, Sysid, Labeltype, Sequence;
+
+  association _COMPANY_DETAILS;
+}
+/* Country Registration as a tab. Managed child over zteinv_cntry, locked and authorized
+   through the root - the same shape as ZCDS_CUN_ELT_CONFIG above.
+
+   NOTE this is the SECOND managed BO over zteinv_cntry: the standalone
+   e-Invoice Country Registrations app writes it through its own root BO. RAP permits
+   it, and ZTELT_CONFIG has been in exactly this position since the
+   ELT Config tab was built, but the two lock masters do not see each
+   other - a row edited in both apps at once is last-writer-wins.
+   Section 89. */
+define behavior for ZCDS_CUN_COMP_CNTRY
+persistent table zteinv_cntry
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, Sequence;
+
+  association _COMPANY_DETAILS;
+
+  mapping for zteinv_cntry
+    {
+      ProjectId             = projectid;
+      SystemId              = sysid;
+      Country               = land1;
+      CompanyCode           = bukrs;
+      Sequence              = sequence;
+      VatRegistrationNumber = vat;
+      CountryDescription    = land1_desc;
+      AutoGenerate          = auto_einv_generate;
+      AutoCancel            = auto_einv_cancel;
+      HandlerClass          = handler_class;
+    }
+}
+
+/* VAT Registration as a tab. Managed child over zteinv_vat, locked and authorized
+   through the root - the same shape as ZCDS_CUN_ELT_CONFIG above.
+
+   NOTE this is the SECOND managed BO over zteinv_vat: the standalone
+   e-Invoice VAT Registrations app writes it through its own root BO. RAP permits
+   it, and ZTELT_CONFIG has been in exactly this position since the
+   ELT Config tab was built, but the two lock masters do not see each
+   other - a row edited in both apps at once is last-writer-wins.
+   Section 89. */
+define behavior for ZCDS_CUN_COMP_VAT
+persistent table zteinv_vat
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, Sequence;
+
+  association _COMPANY_DETAILS;
+
+  mapping for zteinv_vat
+    {
+      ProjectId             = projectid;
+      SystemId              = sysid;
+      Country               = land1;
+      CompanyCode           = bukrs;
+      Sequence              = sequence;
+      VatRegistrationNumber = vat;
+    }
+}
+
+/* API Endpoint as a tab. Managed child over zteinv_api, locked and authorized
+   through the root - the same shape as ZCDS_CUN_ELT_CONFIG above.
+
+   NOTE this is the SECOND managed BO over zteinv_api: the standalone
+   e-Invoice API Endpoints app writes it through its own root BO. RAP permits
+   it, and ZTELT_CONFIG has been in exactly this position since the
+   ELT Config tab was built, but the two lock masters do not see each
+   other - a row edited in both apps at once is last-writer-wins.
+   Section 89. */
+define behavior for ZCDS_CUN_COMP_API
+persistent table zteinv_api
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, Functionality, Sequence;
+
+  association _COMPANY_DETAILS;
+
+  mapping for zteinv_api
+    {
+      ProjectId             = projectid;
+      SystemId              = sysid;
+      Country               = land1;
+      CompanyCode           = bukrs;
+      Functionality         = functionality;
+      Sequence              = sequence;
+      EndpointUrl           = url;
+      ParameterName         = param_name;
+      ParameterValue        = param_value;
+    }
+}
+
+/* Relevance Mapping as a tab. Managed child over zteinv_invmap, locked and authorized
+   through the root. Second managed BO over that table - see the note on
+   the section 89 children; the standalone app writes it too.
+   Section 90. */
+define behavior for ZCDS_CUN_COMP_INVMAP
+persistent table zteinv_invmap
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode,
+                              BillingDocumentType, AccountingDocumentType,
+                              DocumentTypeCode;
+
+  association _COMPANY_DETAILS;
+
+  mapping for zteinv_invmap
+    {
+      ProjectId               = projectid;
+      SystemId                = sysid;
+      Country                 = land1;
+      CompanyCode             = bukrs;
+      BillingDocumentType     = fkart;
+      AccountingDocumentType  = blart;
+      DocumentTypeCode        = doc_type;
+      IsEInvoiceRelevant      = einvoice;
+      IsEWayBillRelevant      = ewaybill;
+      IsNonIrn                = nonirn;
+      HasNoAccountingDoc      = no_acc;
+      IsB2C                   = b2c;
+      IsPurchase              = purchase;
+    }
+}
+
+/* Document Type as a tab. Managed child over zteinv_doctyp, locked and authorized
+   through the root. Second managed BO over that table - see the note on
+   the section 89 children; the standalone app writes it too.
+   Section 90. */
+define behavior for ZCDS_CUN_COMP_DOCTYP
+persistent table zteinv_doctyp
+lock dependent by _COMPANY_DETAILS
+authorization dependent by _COMPANY_DETAILS
+{
+  update;
+  delete;
+
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode,
+                              TransactionType, DocumentTypeCode;
+
+  association _COMPANY_DETAILS;
+
+  mapping for zteinv_doctyp
+    {
+      ProjectId               = projectid;
+      SystemId                = sysid;
+      Country                 = land1;
+      CompanyCode             = bukrs;
+      TransactionType         = transact_type;
+      DocumentTypeCode        = doc_type_code;
+      DocumentTypeDescription = doc_type_descr;
+    }
+}
