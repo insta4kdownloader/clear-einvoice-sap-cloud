@@ -1,0 +1,25 @@
+managed implementation in class zbp_cds_int_einv_vat unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_VAT alias VAT
+persistent table zteinv_vat
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) ProjectId, SystemId, Country, CompanyCode, Sequence;
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, Sequence;
+
+  mapping for zteinv_vat
+    {
+      ProjectId = projectid;
+      SystemId = sysid;
+      Country = land1;
+      CompanyCode = bukrs;
+      Sequence = sequence;
+      VatRegistrationNumber = vat;
+    }
+}

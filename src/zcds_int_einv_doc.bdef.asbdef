@@ -1,0 +1,295 @@
+/* =====================================================================
+   Sales e-Invoice business object.
+
+   Replaces the whole of /CLR/ELT_EINVOICE_COCKPIT: the selection screen,
+   REUSE_ALV_GRID_DISPLAY_LVC, GUI status ZPFSTATUS1 and the FORM-based
+   user-command dispatcher.
+
+   HANA GUI function  ->  RAP artefact
+     &CREATE   submit_data / submit_data_batch  -> action SubmitEInvoice
+     &STATUS   get_status  / call_get_status    -> action RefreshStatus
+     &PDF      print_pdf   / call_print_pdf     -> action RequestPrintout
+     &UPDATE   dynpro 0200 / call_seller_action -> action SellerAction
+     &ZCANCEL  cancel      / call_cancel        -> action CancelEInvoice
+     (none)    get_data + consolidate_data      -> static action PickUpDocuments
+     /CLR/EINV_ALVFUN (enable/disable buttons)  -> instance feature control
+
+   Rows are never deleted: the HANA cockpit dropped reversed documents
+   (cancel = 'X') from the list and lost the trail. Here they stay and
+   are marked instead.
+   ===================================================================== */
+/* No draft handling: this business object is action-driven (submit /
+   status / print / seller action), not a free-editing object page, so a
+   draft store would only add three shadow tables and a draft lifecycle
+   with nothing to gain. Optimistic concurrency is covered by the ETag. */
+managed implementation in class zbp_cds_int_einv_doc unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_DOC alias EInvoice
+persistent table zteinv_doc
+lock master
+/* Both, not just instance: CREATE and the static action PickUpDocuments
+   have no instance to authorize, so they are covered by the global
+   authorization, and this business object has both. */
+authorization master ( instance, global )
+etag master LocalLastChangedAt
+with additional save
+{
+  /* Create exists for PickUpDocuments, which materialises the worklist with
+     EML. It is not exposed on the projection, so the UI cannot create rows.
+     There is deliberately no delete: reversed documents stay and are
+     marked, which is the audit trail the HANA cockpit lost when it dropped
+     cancelled rows from the ALV. */
+  create;
+  update;
+
+  /* The four key fields are NOT listed here. RAP never allows a key to be
+     changed by an update, and marking a key readonly blocks it on CREATE as
+     well - which would leave PickUpDocuments inserting rows with empty keys. */
+  field ( readonly ) ClearDocumentId, CommandId, SyncStatus, ErrorText,
+                     SignedQrCode, SignedInvoice, PlatformUuid,
+                     CreatedOn, CreatedAt, CreatedBy, LocalLastChangedAt;
+
+  /* The key is fixed once the row is there. readonly : update rather than
+     plain readonly: the unconditional form would block it on create too,
+     and PickUpDocuments supplies it. */
+  field ( readonly : update ) BillingDocument, AccountingDocument,
+                              CompanyCode, FiscalYear;
+
+  /* ------------------------------------------------------------------
+     Worklist build. Replaces get_data / get_billing_docs /
+     get_accounting_docs / consolidate_data: it reads
+     ZCDS_INT_EINV_RELEVANT and inserts a pending row for every
+     e-invoice-relevant document that has none yet.
+     ------------------------------------------------------------------ */
+
+  static action PickUpDocuments parameter ZCDS_ABS_EINV_PICKUP;
+
+  /* Submission - hands over to the ELT command/pull engine (ZCL_ELT) */
+  action ( features : instance ) SubmitEInvoice result [1] $self;
+
+  /* Status refresh - HTTP GET on the EINV_STATUS endpoint */
+  action ( features : instance ) RefreshStatus result [1] $self;
+
+  /* Printout - stores the PDF in ZTEINV_PDF instead of gui_download */
+  action ( features : instance ) RequestPrintout result [1] $self;
+
+  /* Seller action - replaces dynpro 0200 including the VAT split grid */
+  action ( features : instance ) SellerAction parameter ZCDS_ABS_EINV_SELLACT result [1] $self;
+
+  /* Cancellation - was an empty stub in every /CLR/ZCL_EINV_* subclass */
+  action ( features : instance ) CancelEInvoice parameter ZCDS_ABS_EINV_CANCEL result [1] $self;
+
+  /* Button enablement - replaces the /CLR/EINV_ALVFUN customizing table - is
+     declared as ( features : instance ) on each action above. Feature control
+     is a characteristic of the operation; there is no standalone statement
+     for it. */
+
+  determination setCreationData on modify { create; }
+  validation checkRelevance on save { create; field CompanyCode; }
+
+  mapping for zteinv_doc
+    {
+      BillingDocument    = vbeln;
+      AccountingDocument = belnr;
+      CompanyCode        = bukrs;
+      FiscalYear         = gjahr;
+      EInvoiceNumber     = invno;
+      EInvoiceDate       = invdt;
+      DocumentTypeCode   = doc_type;
+      ClearDocumentId    = invid;
+      EInvoiceInvoiceType = invtype;
+      SyncStatus         = status;
+      ErrorText          = error;
+      IsB2C              = b2c;
+      IsB2G              = b2g;
+      IsSent             = sent;
+      B2CStatus          = b2c_status;
+      GovernmentStatus   = govt_status;
+      PpfStatus          = govt_ppf_status;
+      PpfAction          = govt_ppf_action;
+      EInvoiceIdentifier = einv_identifier;
+      EInvoiceType       = einv_type;
+      CommandId          = command_id;
+      SignedQrCode       = zsigned_qrcode;
+      SignedInvoice      = zsigned_inv;
+      PlatformUuid       = uuid;
+      CreatedOn          = crdat;
+      CreatedAt          = crtime;
+      CreatedBy          = cruser;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+  association _Error    { create; }
+  association _Exchange { create; }
+  /* { create; } because refreshstatus replaces the whole history through
+     the composition: delete the document's rows, create the new set. The
+     HANA original did DELETE FROM /clr/zt_einv_ppf + INSERT, which the
+     RAP interaction phase does not allow. Section 81. */
+  association _Ppf      { create; }
+  /* No { create; }: the archive is written by the save phase of the
+     submit action (ZCL_EINV_ZIP_STORE), not through the composition, and
+     nothing should be able to create one from outside. */
+  association _Archive;
+}
+
+define behavior for ZCDS_INT_EINV_DOC_ERR alias EInvoiceError
+persistent table zteinv_err
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+  delete;
+
+  /* A to-parent association has to be declared by the child, even when
+     nothing navigates it: RAP needs it to tie the child back to the
+     composition. */
+  association _Document;
+
+  field ( readonly ) ErrorDate, ErrorTime, ErrorSource;
+  field ( readonly : update ) BillingDocument, AccountingDocument, CompanyCode,
+                              FiscalYear, EInvoiceNumber, ErrorNumber;
+
+
+  mapping for zteinv_err
+    {
+      BillingDocument    = vbeln;
+      AccountingDocument = belnr;
+      CompanyCode        = bukrs;
+      FiscalYear         = gjahr;
+      EInvoiceNumber     = invno;
+      ErrorNumber        = errorno;
+      ErrorDate          = errordate;
+      ErrorTime          = errortime;
+      ErrorCode          = errorcode;
+      ErrorSource        = errorsource;
+      ErrorMessage       = errormessage;
+    }
+}
+/* Read only, by design. The archive is evidence of what was uploaded;
+   the service may hand the bytes out and nothing more. A read stream needs
+   no stream declaration in the behaviour - the @Semantics.largeObject
+   annotation on the view drives it - which is the second reason not to
+   make it writable. */
+define behavior for ZCDS_INT_EINV_ZIP alias EInvoiceArchive
+persistent table zteinv_zip
+lock dependent by _Document
+authorization dependent by _Document
+{
+  association _Document;
+
+  /* Plain readonly, not readonly : update. Section 48: the tenant asks
+     for a readonly declaration on every key of every behaviour, including
+     one that declares no operations at all - the check is on the key, not
+     on the operations. Unconditional is correct here because there is no
+     create either: ZCL_EINV_ZIP_STORE writes the table from the save
+     phase, not through this behaviour. */
+  field ( readonly ) BillingDocument, AccountingDocument,
+                     CompanyCode, FiscalYear;
+
+  mapping for zteinv_zip
+    {
+      BillingDocument    = vbeln;
+      AccountingDocument = belnr;
+      CompanyCode        = bukrs;
+      FiscalYear         = gjahr;
+      CommandId          = command_id;
+      MimeType           = mimetype;
+      FileName           = filename;
+      Content            = content;
+      CreatedOn          = crdat;
+      CreatedAt          = crtime;
+    }
+}
+define behavior for ZCDS_INT_EINV_DOC_STAT alias EInvoiceExchange
+persistent table zteinv_sales_st
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+
+  association _Document;
+
+  field ( readonly : update ) BillingDocument, AccountingDocument,
+                              CompanyCode, FiscalYear;
+
+
+  mapping for zteinv_sales_st
+    {
+      BillingDocument           = vbeln;
+      AccountingDocument        = belnr;
+      CompanyCode               = bukrs;
+      FiscalYear                = gjahr;
+      ClearDocumentId           = invid;
+      EInvoiceNumber            = invoice_num;
+      EInvoiceInvoiceType       = invoice_type;
+      DocumentTypeCode          = doc_type;
+      SignedQrCode              = zsigned_qrcode;
+      SignedInvoice             = zsigned_inv;
+      PlatformUuid              = uuid;
+      PaExchangeStatus          = pa_exchg_stat;
+      PaExchangeResponseCode    = pa_exchg_rescode;
+      PaExchangeResponseMessage = pa_exchg_resmsg;
+      PpfInvSubStatus           = ppf_invsub_stat;
+      PpfInvSubResponseCode     = ppf_invsub_rescode;
+      PpfInvSubResponseMessage  = ppf_invsub_resmsg;
+      PpfLcSubStatus            = ppf_lcsub_stat;
+      PpfLcSubResponseCode      = ppf_lcsub_rescode;
+      PpfLcSubResponseMessage   = ppf_lcsub_resmsg;
+      PpfLcRejStatus            = ppf_lcrej_stat;
+      PpfLcRejResponseCode      = ppf_lcrej_rescode;
+      PpfLcRejResponseMessage   = ppf_lcrej_resmsg;
+      PpfLcRefStatus            = ppf_lcref_stat;
+      PpfLcRefResponseCode      = ppf_lcref_rescode;
+      PpfLcRefResponseMessage   = ppf_lcref_resmsg;
+      PpfPaymentStatus          = ppf_lcpmnt_stat;
+      PpfPaymentResponseCode    = ppf_lcpmnt_rescode;
+      PpfPaymentResponseMessage = ppf_lcpmnt_resmsg;
+      EInvoiceIdentifier        = einv_identifier;
+      EInvoiceType              = einv_type;
+    }
+}
+/* The government reporting history. UPDATE and DELETE but no standalone
+   CREATE: rows arrive only through the composition, from refreshstatus.
+   DELETE is needed because the history is replaced wholesale on every
+   refresh - HANA's DELETE FROM + INSERT, expressed the only way the RAP
+   interaction phase allows. Section 81. */
+define behavior for ZCDS_INT_EINV_PPF alias EInvoicePpf
+persistent table zteinv_ppf
+lock dependent by _Document
+authorization dependent by _Document
+{
+  update;
+  delete;
+
+  association _Document;
+
+  field ( readonly ) ReceivedDate, ReceivedTime, ReceivedMilliseconds,
+                     CreatedOn, CreatedAt, CreatedBy;
+  field ( readonly : update ) BillingDocument, AccountingDocument,
+                              CompanyCode, FiscalYear, SequenceNumber,
+                              ReasonNumber;
+
+  mapping for zteinv_ppf
+    {
+      BillingDocument      = vbeln;
+      AccountingDocument   = belnr;
+      CompanyCode          = bukrs;
+      FiscalYear           = gjahr;
+      SequenceNumber       = seqno;
+      ReasonNumber         = rsnno;
+      ClearDocumentId      = invid;
+      TransactionId        = trans_id;
+      PpfAction            = ppf_action;
+      PpfActionType        = ppf_acttyp;
+      PpfStatus            = ppf_status;
+      ReceivedDate         = recv_date;
+      ReceivedTime         = recv_time;
+      ReceivedMilliseconds = recv_msec;
+      ReasonCode           = reason_code;
+      ReasonText           = reason_text;
+      CreatedOn            = crdat;
+      CreatedAt            = crtime;
+      CreatedBy            = cruser;
+    }
+}

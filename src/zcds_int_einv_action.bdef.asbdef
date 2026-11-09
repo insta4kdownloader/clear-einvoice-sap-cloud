@@ -1,0 +1,22 @@
+managed implementation in class zbp_cds_int_einv_action unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_ACTION alias ACTION
+persistent table zteinv_action
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) EInvoiceType, ActionType;
+  field ( readonly : update ) EInvoiceType, ActionType;
+
+  mapping for zteinv_action
+    {
+      EInvoiceType = einv_type;
+      ActionType = action_type;
+      ActionDescription = action_description;
+    }
+}

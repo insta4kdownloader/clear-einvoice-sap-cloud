@@ -1,0 +1,26 @@
+managed implementation in class zbp_cds_int_einv_doctyp unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_DOCTYP alias DOCTYP
+persistent table zteinv_doctyp
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) ProjectId, SystemId, Country, CompanyCode, TransactionType, DocumentTypeCode;
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, TransactionType, DocumentTypeCode;
+
+  mapping for zteinv_doctyp
+    {
+      ProjectId = projectid;
+      SystemId = sysid;
+      Country = land1;
+      CompanyCode = bukrs;
+      TransactionType = transact_type;
+      DocumentTypeCode = doc_type_code;
+      DocumentTypeDescription = doc_type_descr;
+    }
+}

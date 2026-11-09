@@ -1,0 +1,22 @@
+managed implementation in class zbp_cds_int_einv_reason unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_REASON alias REASON
+persistent table zteinv_reason
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) ActionType, ReasonCode;
+  field ( readonly : update ) ActionType, ReasonCode;
+
+  mapping for zteinv_reason
+    {
+      ActionType = action_type;
+      ReasonCode = reason_code;
+      ReasonText = reason_text;
+    }
+}

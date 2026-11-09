@@ -1,0 +1,28 @@
+managed implementation in class zbp_cds_int_einv_api unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_API alias API
+persistent table zteinv_api
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) ProjectId, SystemId, Country, CompanyCode, Functionality, Sequence;
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, Functionality, Sequence;
+
+  mapping for zteinv_api
+    {
+      ProjectId = projectid;
+      SystemId = sysid;
+      Country = land1;
+      CompanyCode = bukrs;
+      Functionality = functionality;
+      Sequence = sequence;
+      EndpointUrl = url;
+      ParameterName = param_name;
+      ParameterValue = param_value;
+    }
+}

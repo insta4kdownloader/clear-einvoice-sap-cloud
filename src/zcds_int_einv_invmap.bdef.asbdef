@@ -1,0 +1,39 @@
+managed implementation in class zbp_cds_int_einv_invmap unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_INVMAP alias INVMAP
+persistent table zteinv_invmap
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  // BillingDocumentType, AccountingDocumentType and DocumentTypeCode are
+  // key fields but may legitimately be left blank, so they are NOT flagged
+  // mandatory. A blank billing type marks a mapping for FI documents that
+  // carry no billing document. They remain readonly on update, as all keys
+  // must. DocumentTypeCode is the code submitted to the portal by
+  // ZCL_EINV_API_CLIENT as documenttypecode: leaving it blank is allowed,
+  // but the e-document then goes out without one.
+  field ( mandatory : create ) ProjectId, SystemId, Country, CompanyCode;
+  field ( readonly : update ) ProjectId, SystemId, Country, CompanyCode, BillingDocumentType, AccountingDocumentType, DocumentTypeCode;
+
+  mapping for zteinv_invmap
+    {
+      ProjectId = projectid;
+      SystemId = sysid;
+      Country = land1;
+      CompanyCode = bukrs;
+      BillingDocumentType = fkart;
+      AccountingDocumentType = blart;
+      DocumentTypeCode = doc_type;
+      IsEInvoiceRelevant = einvoice;
+      IsEWayBillRelevant = ewaybill;
+      IsNonIrn = nonirn;
+      HasNoAccountingDoc = no_acc;
+      IsB2C = b2c;
+      IsPurchase = purchase;
+    }
+}

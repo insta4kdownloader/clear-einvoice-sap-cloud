@@ -1,0 +1,24 @@
+managed implementation in class zbp_cds_int_elt_config unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_ELT_CONFIG
+persistent table ztelt_config
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  /* All four are key fields. readonly : update rather than the
+     unconditional form, which would also block them on create. */
+  field ( readonly : update ) Projectid, Sysid, Labeltype, Sequence;
+
+  /* The updsysid determination that defaulted Sysid to 'CXS' is gone.
+     Sysid is a key field, and RAP does not allow a determination to change
+     one: the handler's MODIFY ... UPDATE FIELDS ( Sysid ) WITH ( %tky = ...
+     Sysid = ... ) was rejected outright with "Component SYSID multiply
+     specified by named include via %TKY", because %tky already carries it.
+     A default for a key belongs on the create payload - either a UI default
+     value or cl_abap_context_info=>get_system_id( ) in the caller. */
+}

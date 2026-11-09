@@ -1,0 +1,21 @@
+managed implementation in class zbp_cds_int_einv_stattx unique;
+strict ( 2 );
+
+define behavior for ZCDS_INT_EINV_STATTX alias STATTX
+persistent table zteinv_stattx
+lock master
+authorization master ( instance, global )
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory : create ) StatusCode;
+  field ( readonly : update ) StatusCode;
+
+  mapping for zteinv_stattx
+    {
+      StatusCode = status_code;
+      StatusText = status_text;
+    }
+}
