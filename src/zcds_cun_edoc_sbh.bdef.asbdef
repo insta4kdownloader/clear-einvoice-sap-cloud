@@ -1,0 +1,137 @@
+projection;
+strict ( 2 );
+
+define behavior for ZCDS_CUN_EDOC_SBH alias EDocument
+{
+  use update;
+  use action SendAction;
+  use association _Line;
+  use association _Party;
+  use association _TaxSubtotal;
+  use association _Allowance;
+  use association _Note;
+  use association _Reference;
+  use association _ItemAttr;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBI alias Line
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, Quantity, UnitIso, UnitSap, Currency, LineNetAmount,
+                     LineTaxAmount, LineAccountingCost, PeriodStart, PeriodEnd,
+                     PeriodDescriptionCode, DeliveryDate, DeliveryTermsId, ItemName,
+                     ItemDescription, BuyerItemId, SellerItemId, StandardItemId,
+                     StandardItemIdScheme, OriginCountry, PackQuantity, PackUnitIso,
+                     PackUnitSap, TaxCategory, TaxPercent, TaxScheme,
+                     TaxExemptionReasonCode, TaxExemptionReason, PriceAmount,
+                     PriceCurrency, PriceBaseQuantity, PriceUnitIso, PriceUnitSap,
+                     PriceAllowanceIndicator, PriceAllowanceReasonCode,
+                     PriceAllowanceReason, PriceAllowanceAmount, PriceGrossAmount;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBP alias Party
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, RoleCode, RoleCodeList, RoleName, EndpointId,
+                     EndpointScheme, PartyId, PartyIdScheme, PartyIdSchemeName, PartyName,
+                     Street, AdditionalStreet, AddressLine, City, PostalZone, Subdivision,
+                     SubdivisionCode, Country, VatId, VatIdScheme, TaxScheme,
+                     RegistrationName, LegalId, LegalIdScheme, LegalAgencyId,
+                     LegalAgencyName, LegalForm, ContactName, ContactTelephone,
+                     ContactMail;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBT alias TaxSubtotal
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, TaxableAmount, TaxAmount, Currency, TaxCategory,
+                     TaxPercent, TaxScheme, TaxExemptionReasonCode, TaxExemptionReason;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBA alias Allowance
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, ChargeIndicator, AllowanceChargeReasonCode,
+                     AllowanceChargeReasonText, Multiplier, Amount, BaseAmount, Currency,
+                     TaxCategory, TaxPercent, TaxScheme, TaxExemptionReasonCode,
+                     TaxExemptionReason;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBN alias Note
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, SubjectCode, NoteText;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBR alias Reference
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, ReferenceId, ReferenceIdScheme, ReferenceLineId,
+                     SalesOrderId, SalesOrderLineId, ReferenceDate, DocumentTypeCode,
+                     DocumentStatusCode, ReferenceDescription, ReferenceUuid,
+                     ReferenceAmount, ReferenceCurrency, AttachmentMimeType,
+                     AttachmentFilename, AttachmentContent, AttachmentUri;
+}
+
+define behavior for ZCDS_CUN_EDOC_SBX alias ItemAttribute
+{
+  /* Read-only in the app: this is the payload as the platform sent
+     it. The base behaviour leaves it writable so a loader can fill
+     it with EML.
+
+     field ( ... ) is a statement of its own here - only create,
+     update, delete, action, function, event, key and association
+     may follow use. */
+  use update;
+  use association _Document;
+  field ( readonly ) DocumentNumber, AttributeName, AttributeNameCode, AttributeValue,
+                     AttributeScheme, AttributeListId, AttributeListVersion;
+}

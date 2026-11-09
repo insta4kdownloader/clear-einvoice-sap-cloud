@@ -1,0 +1,49 @@
+projection;
+strict ( 2 );
+
+define behavior for ZCDS_CUN_EINV_DOC alias EInvoice
+{
+  /* Neither create nor delete is exposed. Rows are materialised by the
+     PickUpDocuments action, and reversed documents are marked, never
+     removed - the HANA cockpit dropped them from the ALV and lost the
+     trail. Offering either on the projection would only produce runtime
+     rejections. */
+  use update;
+
+  use action PickUpDocuments;
+  use action SubmitEInvoice;
+  use action RefreshStatus;
+  use action RequestPrintout;
+  use action SellerAction;
+  use action CancelEInvoice;
+
+  use association _Error;
+  use association _Exchange;
+  use association _Ppf;
+  use association _Archive;
+}
+
+define behavior for ZCDS_CUN_EINV_DOC_ERR alias EInvoiceError
+{
+  use update;
+  use delete;
+  use association _Document;
+}
+
+define behavior for ZCDS_CUN_EINV_ZIP alias EInvoiceArchive
+{
+  use association _Document;
+}
+
+define behavior for ZCDS_CUN_EINV_DOC_STAT alias EInvoiceExchange
+{
+  use update;
+  use association _Document;
+}
+
+define behavior for ZCDS_CUN_EINV_PPF alias EInvoicePpf
+{
+  use update;
+  use delete;
+  use association _Document;
+}
