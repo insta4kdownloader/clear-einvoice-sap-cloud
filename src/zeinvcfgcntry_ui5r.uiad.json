@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "e-Invoice Country Registration",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "e-Invoice Country Registration"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeinvcntry.zsdeinvcntry"
+  },
+  "navigation": {
+    "targetMappingId": "ZEINVCFGCNTRY_UI5R_TM",
+    "semanticObject": "ZEINV_COUNTRY",
+    "action": "MAINTAIN",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEINVCFGCNTRY_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "e-Invoice Country Registration",
+        "subtitle": "e-Invoice Country Registration"
+      }
+    }
+  ]
+}

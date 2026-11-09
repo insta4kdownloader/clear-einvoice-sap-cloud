@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "e-Invoice Status Mapping",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "e-Invoice Status Mapping"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeinvstatus.zsdeinvstatus"
+  },
+  "navigation": {
+    "targetMappingId": "ZEINVCFGSTATUS_UI5R_TM",
+    "semanticObject": "ZEINV_STATUSMAP",
+    "action": "MAINTAIN",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEINVCFGSTATUS_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "e-Invoice Status Mapping",
+        "subtitle": "e-Invoice Status Mapping"
+      }
+    }
+  ]
+}

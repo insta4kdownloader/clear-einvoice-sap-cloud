@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZEINV_MSG</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>e-Invoice ELT Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>000</MSGNR>
+     <TEXT>e-Invoice submitted successfully</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Document is not relevant for e-Invoicing</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Company code &amp;1 has no e-Invoice country registration</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>e-Invoice is already generated</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>e-Invoice is already submitted</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>No Clear platform document ID available for this document</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Endpoint &amp;1 is not maintained in ZTEINV_API</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Authentication token is not maintained in ZTELT_CONFIG</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Clear platform returned HTTP &amp;1 &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Presigned upload URL is not maintained</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Command not found - expected DATA_EXTRACTION, received &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Extraction produced no file</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>Enter at least one date range or a document number</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>&amp;1 relevant document(s) found</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>&amp;1 new worklist entry/entries created</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>018</MSGNR>
+     <TEXT>Select at least one document</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>020</MSGNR>
+     <TEXT>Source document &amp;1 is already cancelled or reversed</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>021</MSGNR>
+     <TEXT>Printout for document &amp;1 is available for download</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>022</MSGNR>
+     <TEXT>A collection date is required for CONFIRM_PAYMENT</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>023</MSGNR>
+     <TEXT>e-Invoice cannot be cancelled more than &amp;1 hours after creation</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>024</MSGNR>
+     <TEXT>e-Invoice is already cancelled</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>025</MSGNR>
+     <TEXT>Status refreshed for &amp;1 document(s)</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>030</MSGNR>
+     <TEXT>Enter an action type</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>031</MSGNR>
+     <TEXT>Action type &amp;1 is not configured for &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>032</MSGNR>
+     <TEXT>Enter a reason code for action &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>033</MSGNR>
+     <TEXT>Reason code &amp;1 is not valid for action &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>034</MSGNR>
+     <TEXT>No company code found for VAT &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>035</MSGNR>
+     <TEXT>&amp;1 document(s) fetched, &amp;2 new</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>036</MSGNR>
+     <TEXT>Detail fetch is not implemented - see ZCL_EINV_EDOC_FETCH</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>037</MSGNR>
+     <TEXT>Document no longer exists or is not visible to you</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZEINV_MSG</ARBGB>
+     <MSGNR>038</MSGNR>
+     <TEXT>&amp;1 document(s) submitted immediately after pick-up</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

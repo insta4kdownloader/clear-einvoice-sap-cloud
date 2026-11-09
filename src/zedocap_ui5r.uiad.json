@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "Inbound e-Invoice AP",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "AP Inbound e-Invoice"
+  },
+  "ui5AppDetails": {
+    "appId": "zedocap.zedocap"
+  },
+  "navigation": {
+    "targetMappingId": "ZEDOCAP_UI5R_TM",
+    "semanticObject": "InboundEInvoice",
+    "action": "display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEDOCAP_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "AP Inbound e-Invoice",
+        "subtitle": "Inbound e-Invoice"
+      }
+    }
+  ]
+}

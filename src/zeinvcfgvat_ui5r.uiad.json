@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "e-Invoice VAT Registration",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "e-Invoice VAT Registration"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeinvvat.zsdeinvvat"
+  },
+  "navigation": {
+    "targetMappingId": "ZEINVCFGVAT_UI5R_TM",
+    "semanticObject": "ZEINV_VAT",
+    "action": "MAINTAIN",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEINVCFGVAT_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "e-Invoice VAT Registration",
+        "subtitle": "e-Invoice VAT Registration"
+      }
+    }
+  ]
+}

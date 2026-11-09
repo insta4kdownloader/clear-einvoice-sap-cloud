@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "Self-Billed e-Invoice - All Data",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Self-Billed e-Invoice - All Data"
+  },
+  "ui5AppDetails": {
+    "appId": "zedocsbflat.zedocsbflat"
+  },
+  "navigation": {
+    "targetMappingId": "ZEDOCSBFLAT_UI5R_TM",
+    "semanticObject": "SelfBilledEInvoice",
+    "action": "analyze",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEDOCSBFLAT_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Self-Billed e-Invoice - All Data",
+        "subtitle": "Self-Billed e-Invoice - All Data"
+      }
+    }
+  ]
+}

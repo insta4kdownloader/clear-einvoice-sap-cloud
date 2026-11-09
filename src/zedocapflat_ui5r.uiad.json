@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Inbound e-Invoice - All Data"
+  },
+  "ui5AppDetails": {
+    "appId": "zedocapflat.zedocapflat"
+  },
+  "navigation": {
+    "targetMappingId": "ZEDOCAPFLAT_UI5R_TM",
+    "semanticObject": "InboundEInvoice",
+    "action": "analyze",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEDOCAPFLAT_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Inbound e-Invoice - All Data",
+        "subtitle": "Inbound e-Invoice - All Data"
+      }
+    }
+  ]
+}

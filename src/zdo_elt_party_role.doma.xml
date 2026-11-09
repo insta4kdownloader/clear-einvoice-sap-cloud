@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DOMA" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD01V>
+    <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>000020</LENG>
+    <OUTPUTLEN>000020</OUTPUTLEN>
+    <VALEXI>X</VALEXI>
+    <DDTEXT>E-Invoice ELT: party role</DDTEXT>
+    <DOMMASTER>E</DOMMASTER>
+   </DD01V>
+   <DD07V_TAB>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0001</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>SELLER</DOMVALUE_L>
+     <DDTEXT>Seller (AccountingSupplierParty)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0002</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>BUYER</DOMVALUE_L>
+     <DDTEXT>Buyer (AccountingCustomerParty)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0003</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>PAYEE</DOMVALUE_L>
+     <DDTEXT>Payee (PayeeParty)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0004</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>TAX_REP</DOMVALUE_L>
+     <DDTEXT>Seller tax representative</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0005</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>DELIVERY</DOMVALUE_L>
+     <DDTEXT>Deliver-to party / location</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0006</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>SELLER_AGE</DOMVALUE_L>
+     <DDTEXT>Seller agent (AgentParty)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0007</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>SELLER_SRV</DOMVALUE_L>
+     <DDTEXT>Seller service provider</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0008</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>BUYER_AGEN</DOMVALUE_L>
+     <DDTEXT>Buyer agent (AgentParty)</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0009</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>BUYER_SRV_</DOMVALUE_L>
+     <DDTEXT>Buyer service provider</DDTEXT>
+    </DD07V>
+    <DD07V>
+     <DOMNAME>ZDO_ELT_PARTY_ROLE</DOMNAME>
+     <VALPOS>0010</VALPOS>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DOMVALUE_L>MANUFACTUR</DOMVALUE_L>
+     <DDTEXT>Item manufacturer</DDTEXT>
+    </DD07V>
+   </DD07V_TAB>
+  </asx:values>
+ </asx:abap>
+</abapGit>

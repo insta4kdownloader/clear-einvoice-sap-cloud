@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "e-Invoice Constants",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "e-Invoice Constants"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeinvconst.zsdeinvconst"
+  },
+  "navigation": {
+    "targetMappingId": "ZEINVCFGCONST_UI5R_TM",
+    "semanticObject": "ZEINV_CONSTANT",
+    "action": "MAINTAIN",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEINVCFGCONST_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "e-Invoice Constants",
+        "subtitle": "e-Invoice Constants"
+      }
+    }
+  ]
+}

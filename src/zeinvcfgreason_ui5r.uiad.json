@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "e-Invoice Reason Codes",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "e-Invoice Reason Codes"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeinvreason.zsdeinvreason"
+  },
+  "navigation": {
+    "targetMappingId": "ZEINVCFGREASON_UI5R_TM",
+    "semanticObject": "ZEINV_REASON",
+    "action": "MAINTAIN",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZEINVCFGREASON_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "e-Invoice Reason Codes",
+        "subtitle": "e-Invoice Reason Codes"
+      }
+    }
+  ]
+}
