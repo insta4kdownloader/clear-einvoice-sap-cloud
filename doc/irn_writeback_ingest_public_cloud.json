@@ -1,0 +1,108 @@
+{
+  "idempotencyKey": "f5df2f82-5663-4dd6-b26c-12e9c99ab597",
+  "postingType": "IRN_WRITEBACK",
+  "insertTable": [
+    {
+      "name": "ZTEINV_DOC",
+      "data": [
+        [
+          {
+            "name": "STATUS",
+            "type": "VALUE",
+            "value": "FAILURE"
+          },
+          {
+            "name": "ZSIGNED_QRCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VALID_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VALID_TIME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CANCEL_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CANCEL_TIME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CRDAT",
+            "type": "SYSTEM",
+            "value": ""
+          },
+          {
+            "name": "CRTIME",
+            "type": "SYSTEM",
+            "value": ""
+          },
+          {
+            "name": "ERROR",
+            "type": "VALUE",
+            "value": "Tax exemption reason is required| Identification number is not valid - BUYER"
+          },
+          {
+            "name": "UNIQUE_IDENTIFIER",
+            "type": "VALUE",
+            "value": "[\"0210005472\",\"7902\",\"0210005472\",\"2025\",\"01\",\"B2B\"]"
+          },
+          {
+            "name": "UNIQID",
+            "type": "VALUE",
+            "value": "C58746708080_0210005472_01_2025"
+          },
+          {
+            "name": "INVID",
+            "type": "VALUE",
+            "value": "68bfd1b677cab402e545ea84"
+          },
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": "null"
+          },
+          {
+            "name": "VBELN",
+            "type": "VALUE",
+            "value": "0210005472"
+          },
+          {
+            "name": "BELNR",
+            "type": "VALUE",
+            "value": "0210005472"
+          },
+          {
+            "name": "BUKRS",
+            "type": "VALUE",
+            "value": "7902"
+          },
+          {
+            "name": "GJAHR",
+            "type": "VALUE",
+            "value": "2025"
+          },
+          {
+            "name": "DOC_TYPE",
+            "type": "VALUE",
+            "value": "01"
+          },
+          {
+            "name": "B2C",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    }
+  ]
+}

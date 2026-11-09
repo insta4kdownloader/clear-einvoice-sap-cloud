@@ -1,0 +1,1030 @@
+{
+  "insertTable": [
+    {
+      "name": "ZTEDOC_APH",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "UBL_VERSION",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CUSTOMIZATION_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PROFILE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ISSUE_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ISSUE_TIME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DUE_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "INV_TYPE_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "INV_TYPE_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_POINT_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CURRENCY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_CURRENCY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ACC_COST",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "BUYER_REF",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PERIOD_START",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PERIOD_END",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PERIOD_DESC_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXC_SRC_CURR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXC_TGT_CURR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXC_RATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXC_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_EXT_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ALLOWANCE_TOTAL",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CHARGE_TOTAL",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXCL_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VAT_TOTAL",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_INCL_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PREPAID_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYABLE_RND_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYABLE_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VAT_TOTAL_TAXCUR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ACTUAL_DEL_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DEL_LOC_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DEL_LOC_ID_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DEL_TERMS_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_MEANS_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_MEANS_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_MEANS_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_INSTR_NOTE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYEE_ACC_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYEE_ACC_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYEE_ACC_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYEE_BRANCH_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CARD_ACC_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CARD_NETWORK",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CARD_HOLDER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "MANDATE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAYER_ACC_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_TERMS_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_TERMS_NOTE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_TERMS_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_TERMS_CURR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PAY_TERMS_DUE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PREPAID_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PREPAID_PAID_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PREPAID_CURR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PREPAID_RCVD_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PREPAID_INSTR_ID",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_API",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "QUANTITY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "UNIT_ISO",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CURRENCY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_NET_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_TAX_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ACC_COST",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PERIOD_START",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PERIOD_END",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PERIOD_DESC_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DEL_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DEL_TERMS_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ITEM_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ITEM_DESC",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "BUYER_ITEM_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SELLER_ITEM_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "STD_ITEM_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "STD_ITEM_ID_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ORIGIN_COUNTRY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PACK_QTY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PACK_UNIT_ISO",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_CAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_PERCENT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_SCHEME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXE_RSN_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXE_RSN",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_CURR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_BASE_QTY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_UNIT_ISO",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_ALLOW_IND",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_ALLOW_RSN_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_ALLOW_RSN",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_ALLOW_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PRICE_GROSS_AMT",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_APP",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PARTY_ROLE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ROLE_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ROLE_CODE_LIST",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ROLE_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ENDPOINT_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ENDPOINT_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PARTY_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PARTY_ID_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PARTY_ID_SCH_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PARTY_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "STREET",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ADD_STREET",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ADDR_LINE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CITY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "POSTAL_ZONE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SUBDIV",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SUBDIV_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "COUNTRY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VAT_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VAT_ID_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_SCHEME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REG_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LEGAL_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LEGAL_ID_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LEGAL_AGENCY_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LEGAL_AGENCY_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LEGAL_FORM",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CONTACT_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CONTACT_TEL",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CONTACT_MAIL",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_APA",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SEQ",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CHARGE_IND",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "AC_RSN_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "AC_RSN_TEXT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "MULTIPLIER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "AMOUNT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "BASE_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CURRENCY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_CAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_PERCENT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_SCHEME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXE_RSN_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXE_RSN",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_APT",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SEQ",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAXABLE_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_AMT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "CURRENCY",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_CAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_PERCENT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_SCHEME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXE_RSN_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "TAX_EXE_RSN",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_APN",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SEQ",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "NOTE_TEXT",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_APR",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_TYPE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SEQ",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_ID_SCH",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SO_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SO_LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_DATE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOC_TYPE_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOC_STATUS_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_DESC",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_AMOUNT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "REF_CURR",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATT_MIME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATT_FILENAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATT_CONTENT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATT_URI",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    },
+    {
+      "name": "ZTEDOC_APX",
+      "data": [
+        [
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "LINE_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_TYPE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "SEQ",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "DOCUMENTNUMBER",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_NAME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_NAME_CODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_VALUE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_SCHEME",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_LIST_ID",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ATTR_LIST_VER",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    }
+  ]
+}

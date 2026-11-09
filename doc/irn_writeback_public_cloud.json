@@ -1,0 +1,173 @@
+{
+  "idempotencyKey": "6aab7b46d10eaa605f8eac9c:1789623116210",
+  "postingType": "IRN_WRITEBACK",
+  "insertTable": [
+    {
+      "name": "ZTEINV_SALES_ST",
+      "data": [
+        [
+          {
+            "name": "INVID",
+            "type": "VALUE",
+            "value": "6aab7b46d10eaa605f8eac9c"
+          },
+          {
+            "name": "INVOICE_NUM",
+            "type": "VALUE",
+            "value": "AE0118000000492026"
+          },
+          {
+            "name": "INVOICE_TYPE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PA_EXCHG_STAT",
+            "type": "VALUE",
+            "value": "SUBMITTED"
+          },
+          {
+            "name": "PA_EXCHG_RESCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PA_EXCHG_RESMSG",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_INVSUB_STAT",
+            "type": "VALUE",
+            "value": "PROCESSING"
+          },
+          {
+            "name": "PPF_INVSUB_RESCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_INVSUB_RESMSG",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCSUB_STAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCSUB_RESCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCSUB_RESMSG",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCREJ_STAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCREJ_RESCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCREJ_RESMSG",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCREF_STAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCREF_RESCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCREF_RESMSG",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCPMNT_STAT",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCPMNT_RESCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "PPF_LCPMNT_RESMSG",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "VBELN",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "BUKRS",
+            "type": "VALUE",
+            "value": "AE01"
+          },
+          {
+            "name": "DOC_TYPE",
+            "type": "VALUE",
+            "value": "380"
+          },
+          {
+            "name": "EINV_IDENTIFIER",
+            "type": "VALUE",
+            "value": "B2B_Sales_Domestic"
+          },
+          {
+            "name": "EINV_TYPE",
+            "type": "VALUE",
+            "value": "SALES_B2C"
+          },
+          {
+            "name": "UNIQUE_IDENTIFIER",
+            "type": "VALUE",
+            "value": "AE01-1800000049-2026-380"
+          },
+          {
+            "name": "GJAHR",
+            "type": "VALUE",
+            "value": "2026"
+          },
+          {
+            "name": "BELNR",
+            "type": "VALUE",
+            "value": "1800000049"
+          },
+          {
+            "name": "ZSIGNED_QRCODE",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "ZSIGNED_INV",
+            "type": "VALUE",
+            "value": ""
+          },
+          {
+            "name": "UUID",
+            "type": "VALUE",
+            "value": ""
+          }
+        ]
+      ]
+    }
+  ]
+}
