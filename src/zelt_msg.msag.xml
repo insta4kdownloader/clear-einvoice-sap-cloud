@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZELT_MSG</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>ELT Message Class</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Ping test url not maintained</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Ping test failed &amp;1 &amp;2</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Empty response (Ping test) &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>&amp;1 &amp;2 &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>ERP config not maintained</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Hostname not maintained</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Auth token not maintained</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>UID not maintained</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZELT_MSG</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>HTTP Communication Failure</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

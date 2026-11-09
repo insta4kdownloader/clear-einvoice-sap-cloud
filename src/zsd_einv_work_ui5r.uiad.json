@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "e-Invoice AR Dashboard",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "e-Invoice AR Dashboard"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeinvwork.zsdeinvwork"
+  },
+  "navigation": {
+    "targetMappingId": "ZSD_EINV_WORK_UI5R_TM",
+    "semanticObject": "ZSD_EINV_WORK",
+    "action": "DISPLAY",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZSD_EINV_WORK_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "e-Invoice AR Dashboard",
+        "subtitle": "e-Invoice AR Dashboard"
+      }
+    }
+  ]
+}

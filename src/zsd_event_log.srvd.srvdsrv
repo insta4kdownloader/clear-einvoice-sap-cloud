@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definitions for Event Log Table'
+define service ZSD_EVENT_LOG {
+  expose ZCDS_CUN_EVENT_LOG;
+}

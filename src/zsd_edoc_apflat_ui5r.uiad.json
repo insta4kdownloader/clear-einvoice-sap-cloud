@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "Inbound e-Invoice All Data",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Inbound e-Invoice All Data"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdedocapflat.zsdedocapflat"
+  },
+  "navigation": {
+    "targetMappingId": "ZSD_EDOC_APFLAT_UI5R_TM",
+    "semanticObject": "ZSD_EDOC_APFLAT",
+    "action": "DISPLAY",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZSD_EDOC_APFLAT_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Inbound e-Invoice All Data",
+        "subtitle": "Inbound e-Invoice"
+      }
+    }
+  ]
+}

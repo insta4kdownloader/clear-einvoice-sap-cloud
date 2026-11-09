@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "ELT Configuration",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "ELT Configuration"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeltconfig.zsdeltconfig"
+  },
+  "navigation": {
+    "targetMappingId": "ZSDELTCONFIG_UI5R_TM",
+    "semanticObject": "ELTConfiguration",
+    "action": "MANAGE",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZSDELTCONFIG_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "ELT Configuration",
+        "subtitle": "ELT Configuration"
+      }
+    }
+  ]
+}

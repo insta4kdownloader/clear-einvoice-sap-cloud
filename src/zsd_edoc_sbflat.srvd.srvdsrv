@@ -1,0 +1,4 @@
+@EndUserText.label: 'All Data Query for Self-Billed e-Invoice'
+define service ZSD_EDOC_SBFLAT {
+  expose ZCDS_CUN_EDOC_SBFLAT as EDocumentData;
+}

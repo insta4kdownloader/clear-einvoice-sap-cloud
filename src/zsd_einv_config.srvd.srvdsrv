@@ -1,0 +1,21 @@
+@EndUserText.label: 'Service Definition for e-Invoice Configu'
+define service ZSD_EINV_CONFIG {
+  expose ZCDS_CUN_EINV_CNTRY as CountryRegistration;
+  expose ZCDS_CUN_EINV_API as ApiEndpoint;
+  expose ZCDS_CUN_EINV_CONST as Constant;
+  expose ZCDS_CUN_EINV_INVMAP as RelevanceMapping;
+  expose ZCDS_CUN_EINV_DOCTYP as DocumentType;
+  expose ZCDS_CUN_EINV_STATUS as StatusMapping;
+  expose ZCDS_CUN_EINV_VAT as VatRegistration;
+  expose ZCDS_CUN_EINV_ACTION as ActionType;
+  expose ZCDS_CUN_EINV_REASON as ReasonCode;
+  expose ZCDS_CUN_EINV_STATTX as StatusText;
+  expose ZVH_EINV_COUNTRY as VHCountry;
+  expose ZVH_EINV_COMPANYCODE as VHCompanyCode;
+  expose ZVH_EINV_BILLINGTYPE as VHBillingType;
+  expose ZVH_EINV_ACCDOCTYPE as VHAccDocType;
+  expose ZVH_EINV_ACTIONTYPE as VHActionType;
+  expose ZVH_EINV_STATUS as VHStatus;
+  expose ZVH_EINV_REASONCODE as VHReasonCode;
+  expose ZVH_EINV_PROJECT as VHProject;
+}

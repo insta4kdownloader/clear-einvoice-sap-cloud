@@ -1,0 +1,25 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Launchpad Page for ElT Config",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "title": "ELT Configuration"
+  },
+  "sections": [
+    {
+      "id": "SECTION_1",
+      "visualizations": [
+        {
+          "id": "SECTION_1_VIZ_1",
+          "ladiAssignment": {
+            "ladiId": "ZELT_CONFIG_UI5R",
+            "tileId": "UI5R_AC8E883C13787FA26BE3E3D2C8DE7A8C95564708_AL"
+          }
+        }
+      ]
+    }
+  ]
+}

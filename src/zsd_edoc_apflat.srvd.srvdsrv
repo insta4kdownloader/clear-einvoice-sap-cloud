@@ -1,0 +1,4 @@
+@EndUserText.label: 'All Data Query for Inbound e-Invoice (AP'
+define service ZSD_EDOC_APFLAT {
+  expose ZCDS_CUN_EDOC_APFLAT as EDocumentData;
+}

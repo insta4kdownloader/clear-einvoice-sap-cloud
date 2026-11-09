@@ -1,0 +1,14 @@
+@EndUserText.label: 'Service Definition for Self-Billed e-Inv'
+define service ZSD_EDOC_SB {
+  expose ZCDS_CUN_EDOC_SBH as EDocument;
+  expose ZCDS_CUN_EDOC_SBI as Line;
+  expose ZCDS_CUN_EDOC_SBP as Party;
+  expose ZCDS_CUN_EDOC_SBT as TaxSubtotal;
+  expose ZCDS_CUN_EDOC_SBA as Allowance;
+  expose ZCDS_CUN_EDOC_SBN as Note;
+  expose ZCDS_CUN_EDOC_SBR as Reference;
+  expose ZCDS_CUN_EDOC_SBX as ItemAttribute;
+  expose ZVH_EINV_ACTTYPE_SELF as VHActionType;
+  expose ZVH_EINV_STATUS as VHStatus;
+  expose ZVH_EINV_REASONCODE as VHReasonCode;
+}

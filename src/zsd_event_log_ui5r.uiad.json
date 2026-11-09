@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "ELT Event Log"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdeventlog.zsdeventlog"
+  },
+  "navigation": {
+    "targetMappingId": "ZSD_EVENT_LOG_UI5R_TM",
+    "semanticObject": "ZSD_EVENT_LOG",
+    "action": "MAINTAIN",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZSD_EVENT_LOG_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "ELT Event Log",
+        "subtitle": "Event Log"
+      }
+    }
+  ]
+}

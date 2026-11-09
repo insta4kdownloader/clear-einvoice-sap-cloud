@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Event Log",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "eventlogtable.zeventlog"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_B4949049BBD15A617475E6916636AD63F311348B_TM",
+    "semanticObject": "ZEVENT_LOG",
+    "action": "View",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_B4949049BBD15A617475E6916636AD63F311348B_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Event Log",
+        "subtitle": "Event Log"
+      }
+    }
+  ]
+}

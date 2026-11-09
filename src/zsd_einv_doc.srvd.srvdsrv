@@ -1,0 +1,13 @@
+@EndUserText.label: 'Service Definition for the Sales e-Invoi'
+define service ZSD_EINV_DOC {
+  expose ZCDS_CUN_EINV_DOC as EInvoice;
+  expose ZCDS_CUN_EINV_WORKLIST as EInvoiceWorklist;
+  expose ZCDS_CUN_EINV_DOC_ERR as EInvoiceError;
+  expose ZCDS_CUN_EINV_DOC_STAT as EInvoiceExchange;
+  expose ZCDS_CUN_EINV_PPF as EInvoicePpf;
+  expose ZCDS_CUN_EINV_ZIP as EInvoiceArchive;
+  expose ZVH_EINV_COMPANYCODE as VHCompanyCode;
+  expose ZVH_EINV_STATUS as VHStatus;
+  expose ZVH_EINV_REASONCODE as VHReasonCode;
+  expose ZVH_EINV_PROJECT as VHProject;
+}

@@ -1,0 +1,25 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Launchpad Page for Event Log Table",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "title": "Event Log Table"
+  },
+  "sections": [
+    {
+      "id": "SECTION_1",
+      "visualizations": [
+        {
+          "id": "SECTION_1_VIZ_1",
+          "ladiAssignment": {
+            "ladiId": "ZEVENT_LOG_UI5R",
+            "tileId": "UI5R_B4949049BBD15A617475E6916636AD63F311348B_AL"
+          }
+        }
+      ]
+    }
+  ]
+}

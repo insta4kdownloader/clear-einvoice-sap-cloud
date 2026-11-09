@@ -1,0 +1,14 @@
+@EndUserText.label: 'Service Definition for Inbound e-Invoice'
+define service ZSD_EDOC_AP {
+  expose ZCDS_CUN_EDOC_APH as EDocument;
+  expose ZCDS_CUN_EDOC_API as Line;
+  expose ZCDS_CUN_EDOC_APP as Party;
+  expose ZCDS_CUN_EDOC_APT as TaxSubtotal;
+  expose ZCDS_CUN_EDOC_APA as Allowance;
+  expose ZCDS_CUN_EDOC_APN as Note;
+  expose ZCDS_CUN_EDOC_APR as Reference;
+  expose ZCDS_CUN_EDOC_APX as ItemAttribute;
+  expose ZVH_EINV_ACTTYPE_AP as VHActionType;
+  expose ZVH_EINV_STATUS as VHStatus;
+  expose ZVH_EINV_REASONCODE as VHReasonCode;
+}

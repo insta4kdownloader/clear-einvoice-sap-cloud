@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "Self Billed All Data",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Self Billed All Data"
+  },
+  "ui5AppDetails": {
+    "appId": "zsdedocsbflat.zsdedocsbflat"
+  },
+  "navigation": {
+    "targetMappingId": "ZSD_EDOC_SBFLAT_UI5R_TM",
+    "semanticObject": "ZSD_EDOC_SBFLAT",
+    "action": "DISPLAY",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "ZSD_EDOC_SBFLAT_UI5R_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Self Billed All Data",
+        "subtitle": "Self Billed"
+      }
+    }
+  ]
+}
